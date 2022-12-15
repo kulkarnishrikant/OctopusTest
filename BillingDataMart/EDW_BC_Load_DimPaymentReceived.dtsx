@@ -1,0 +1,2721 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/22/2015 3:09:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MM643VAMUDW7"
+  DTS:CreatorName="MMI\t159079"
+  DTS:DTSID="{BA60772E-6919-433C-97CA-03AE976BBCEE}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="EDW_BC_Load_DimPaymentReceived"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="85"
+  DTS:VersionGUID="{0BB88F7E-1582-4B25-AEA5-D6E2DB09424E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="BatchID"
+      DTS:ConfigurationVariable="\Package.Variables[User::BatchID].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{DC4025EB-2E59-4783-9D3E-4E855E52BC8F}"
+      DTS:ObjectName="ConfigBatchID" />
+    <DTS:Configuration
+      DTS:ConfigurationString="IncrementDays"
+      DTS:ConfigurationVariable="\Package.Variables[User::IncrementDays].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{805FCEC8-D476-4060-86A1-E57C56E3EE06}"
+      DTS:ObjectName="configIncrementDays" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{979C74E0-E33A-45BC-836D-F80257043E72}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{55732055-273A-40B8-842A-089130329E6F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="IncrementDays">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A5B68B43-5A78-4165-9D21-BDF19CA648A0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="InsertCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{69674C07-A111-48D7-9BF9-830F173BCBD2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EE42B566-4C9F-41D6-AE47-75EE2E0D0A66}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UnChangeCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83780584-3901-4D23-834B-6EFA3A1AF786}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UpdateCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - DimPaymentReceived"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E78B8C03-35B7-4538-A79A-CA3AF3829AEA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - DimPaymentReceived"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="CMD - Update DimPaymentReceived"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">
+Update DimPaymentReceived 
+SET
+DateUpdated                        =Getdate()
+      ,PaymentType = ?
+      ,PaymentMethod = ?
+      ,BankAccountNumber  = ?
+     , CheckNumber = ?
+      ,PaymentReversalReason  = ?
+   
+      ,AppliedDate   = ?
+      ,ReversalDate  = ? 
+      ,IsActive  = ?
+      ,GWRowNumber  = ?
+      ,BeanVersion  = ?
+  ,ReceivedDate = ?
+,PaymentDescription=?
+,PaymentTypeCode=?
+,AccountNumber=?
+,PaymentSource=?
+,Email =?
+     Where PublicID  = ?
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[PaymentType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PaymentType"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentType]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[PaymentMethod]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PaymentMethod"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentMethod]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[BankAccountNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="BankAccountNumber"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BankAccountNumber]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[CheckNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CheckNumber"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckNumber]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[PaymentReversalReason]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PaymentReversalReason"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentReversalReason]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[AppliedDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="AppliedDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[AppliedDate]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[ReversalDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="ReversalDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReversalDate]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[IsActive]"
+                      cachedDataType="i4"
+                      cachedName="IsActive"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[GWRowNumber]"
+                      cachedDataType="i8"
+                      cachedName="GWRowNumber"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[GWRowNumber]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[BeanVersion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="BeanVersion"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BeanVersion]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[ReceivedDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="ReceivedDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReceivedDate]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[PaymentDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1333"
+                      cachedName="PaymentDescription"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentDescription]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[AccountNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="AccountNumber"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNumber]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[PaymentTypeCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="PaymentTypeCode"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentTypeCode]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[PaymentSource]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PaymentSource"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentSource]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[Email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].Columns[PublicID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="68"
+                      cachedName="PublicID"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_16]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PublicID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="dbTimeStamp"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="dbTimeStamp"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="bool"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="i8"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      dataType="dbTimeStamp2"
+                      name="Param_10"
+                      scale="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1333"
+                      name="Param_11">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Param_12">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Param_13">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_14">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_15">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input].ExternalColumns[Param_16]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="Param_16">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\CNT - Insert  Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Insert  Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::InsertCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\CNT - Insert  Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CNT - Insert  Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CNT - Insert  Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\CNT - Source Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Source Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::SourceCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\CNT - Source Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CNT - Source Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CNT - Source Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\CNT - Unchange Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Unchange Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::UnChangeCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\CNT - Unchange Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CNT - Unchange Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CNT - Unchange Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\CNT - Update Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Update Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::UpdateCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\CNT - Update Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CNT - Update Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CNT - Update Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="CSPL - Check BeanVersion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Inputs[Conditional Split Input].Columns[BeanVersion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="BeanVersion"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BeanVersion]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Inputs[Conditional Split Input].Columns[EDWBeanVersion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="EDWBeanVersion"
+                      lineageId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Match Output].Columns[EDWBeanVersion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[SameBeanVersion]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="SameBeanVersion"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BeanVersion]} == #{Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Match Output].Columns[EDWBeanVersion]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">BeanVersion == EDWBeanVersion</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DRV - BatchID &amp; Legacy"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output].Columns[BatchID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output].Columns[BatchID]"
+                      name="BatchID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::BatchID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::BatchID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output].Columns[LegacySourceSystem]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output].Columns[LegacySourceSystem]"
+                      name="LegacySourceSystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,25,1252)@[$Project::LegacySourceSystem]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,25,1252)@[$Project::LegacySourceSystem]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - DimPaymentReceived"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select Publicid ,BeanVersion from DimPaymentReceived</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (Select Publicid ,BeanVersion from DimPaymentReceived) [refTable]
+where [refTable].[Publicid] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Publicid" dataType="DT_STR" length="64" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="BeanVersion" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PublicID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Inputs[Lookup Input].Columns[PublicID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="68"
+                      cachedName="PublicID"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PublicID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Publicid</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Match Output].Columns[EDWBeanVersion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="30"
+                      lineageId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Match Output].Columns[EDWBeanVersion]"
+                      name="EDWBeanVersion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">BeanVersion</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select
+	 Cast(ISNULL(tlbm.Name,'') as Varchar(100)) as PaymentType
+	,Cast(ISNULL(tlpm.Name,'') as Varchar(100)) as PaymentMethod
+	,bcpi.Token as BankAccountNumber
+	,cast(bm.RefNumber as VarChar(50)) as CheckNumber
+	,Cast(ps.NAME as Varchar(100)) as PaymentReversalReason
+	,bm.ReceivedDate
+	,bm.AppliedDate
+	,bm.ReversalDate
+	,case bm.Retired when 0 then 1 else 0 end as IsActive
+	,bm.PublicID
+	,bm.ID as GWRowNumber
+	,cast(concat(bm.BeanVersion ,bcpi.BeanVersion) as varchar(20)) as BeanVersion
+	,bm.Description as PaymentDescription
+	,cast(ept.Name as varchar(60)) as PaymentTypeCode
+	,cast(AccountNumberMask_Ext as varchar(60)) as AccountNumber
+	,bm.Email_Ext as Email
+	,pmt.NAME as PaymentSource
+From bc_basemoneyreceived bm 
+	LEFT JOIN bctl_basemoneyreceived tlbm ON bm.Subtype = tlbm.ID
+	LEFT JOIN bc_paymentinstrument bcpi ON bcpi.ID=bm.PaymentInstrumentID
+	LEFT JOIN bctl_paymentmethod tlpm ON bcpi.PaymentMethod=tlpm.ID
+	LEFT JOIN bctl_paymentreversalreason ps ON bm.ReversalReason=ps.ID
+	LEFT JOIN bctl_epaypaymenttype_ext ept ON bm.EpayPaymentType_Ext = ept.ID
+	left join bctl_paymentsource_ext pmt on bm.PaymentSource_Ext=pmt.ID
+
+WHERE (
+(
+bm.UpdateTime &gt;= dateadd(d,?,cast(getdate() as date))
+OR
+bcpi.UpdateTime &gt;= dateadd(d,?,cast(getdate() as date))
+)
+)
+
+union all
+select 
+'incomingproducerpayment' as PaymentType
+,Cast(ISNULL(tlpm.Name,'') as Varchar(100)) as PaymentMethod
+,bcpi.Token as BankAccountNumber
+,cast(ipp.RefNumber as VarChar(50)) as CheckNumber
+,Cast(ps.NAME as Varchar(100)) as PaymentReversalReason
+,ipp.CreateTime as ReceivedDate  -- didn't find ReceivedDate date for commission return , use createtime as default date
+,ipp.CreateTime as AppliedDate   -- didn't find AppliedDate date for commission return , use createtime as default date
+,ipp.ReversalDate
+,case ipp.Retired when 0 then 1 else 0 end as IsActive
+,concat('ipp:',ipp.PublicID ) as PublicID
+,ipp.ID as GWRowNumber
+,cast(ipp.BeanVersion as varchar(20)) as BeanVersion
+,NULL as PaymentDescription
+,NULL as PaymentTypeCode
+,NULL as AccountNumber
+,NULL as Email
+,NULL as PaymentSource
+FROM bc_incomingproducerpayment ipp
+LEFT JOIN bc_paymentinstrument bcpi ON bcpi.ID=ipp.PaymentInstrumentID
+LEFT JOIN bctl_paymentmethod tlpm ON bcpi.PaymentMethod=tlpm.ID
+LEFT JOIN bctl_paymentreversalreason ps ON ipp.ReversalReason=ps.ID
+WHERE
+ipp.UpdateTime &gt;= dateadd(d,?,cast(getdate() as date))</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{55732055-273A-40B8-842A-089130329E6F};"Parameter1:Input",{55732055-273A-40B8-842A-089130329E6F};"Parameter2:Input",{55732055-273A-40B8-842A-089130329E6F};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DimPaymentReceived\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{EA62C0E7-CF0B-42BD-8840-CCEC8B17E6B2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[GWStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentType]"
+                      length="100"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentType]"
+                      name="PaymentType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentMethod]"
+                      length="100"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentMethod]"
+                      name="PaymentMethod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BankAccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BankAccountNumber]"
+                      length="255"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BankAccountNumber]"
+                      name="BankAccountNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      length="50"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      name="CheckNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentReversalReason]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentReversalReason]"
+                      length="100"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentReversalReason]"
+                      name="PaymentReversalReason"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReceivedDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReceivedDate]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReceivedDate]"
+                      name="ReceivedDate"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[AppliedDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AppliedDate]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[AppliedDate]"
+                      name="AppliedDate"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReversalDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReversalDate]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReversalDate]"
+                      name="ReversalDate"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      name="IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PublicID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PublicID]"
+                      length="68"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PublicID]"
+                      name="PublicID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[GWRowNumber]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GWRowNumber]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[GWRowNumber]"
+                      name="GWRowNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BeanVersion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BeanVersion]"
+                      length="20"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BeanVersion]"
+                      name="BeanVersion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentDescription]"
+                      length="1333"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentDescription]"
+                      name="PaymentDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentTypeCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentTypeCode]"
+                      length="60"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentTypeCode]"
+                      name="PaymentTypeCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountNumber]"
+                      length="60"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNumber]"
+                      name="AccountNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      length="50"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentSource]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentSource]"
+                      length="50"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentSource]"
+                      name="PaymentSource"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PaymentType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PaymentMethod" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BankAccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="BankAccountNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentReversalReason]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PaymentReversalReason" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReceivedDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReceivedDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AppliedDate]"
+                      dataType="dbTimeStamp2"
+                      name="AppliedDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReversalDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReversalDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      dataType="i4"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PublicID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="68"
+                      name="PublicID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GWRowNumber]"
+                      dataType="i8"
+                      name="GWRowNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BeanVersion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="BeanVersion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1333"
+                      name="PaymentDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentTypeCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="PaymentTypeCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="AccountNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaymentSource]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="PaymentSource" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentType]"
+                      name="PaymentType" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentMethod]"
+                      name="PaymentMethod" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BankAccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BankAccountNumber]"
+                      name="BankAccountNumber" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      name="CheckNumber" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentReversalReason]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentReversalReason]"
+                      name="PaymentReversalReason" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReceivedDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReceivedDate]"
+                      name="ReceivedDate"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AppliedDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AppliedDate]"
+                      name="AppliedDate"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReversalDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReversalDate]"
+                      name="ReversalDate"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                      name="IsActive" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PublicID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="68"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PublicID]"
+                      name="PublicID" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GWRowNumber]"
+                      dataType="i8"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GWRowNumber]"
+                      name="GWRowNumber" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BeanVersion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BeanVersion]"
+                      name="BeanVersion" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1333"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentDescription]"
+                      name="PaymentDescription" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentTypeCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentTypeCode]"
+                      name="PaymentTypeCode" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountNumber]"
+                      name="AccountNumber" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentSource]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaymentSource]"
+                      name="PaymentSource" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DEST - Load PaymentReceived"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimPaymentReceived]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">10000</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[PublicID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="68"
+                      cachedName="PublicID"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PublicID]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PublicID]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[GWRowNumber]"
+                      cachedDataType="i8"
+                      cachedName="GWRowNumber"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[GWRowNumber]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[GWRowNumber]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[BeanVersion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="BeanVersion"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BeanVersion]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BeanVersion]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[PaymentType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PaymentType"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentType]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentType]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[PaymentMethod]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PaymentMethod"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentMethod]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentMethod]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[PaymentReversalReason]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PaymentReversalReason"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentReversalReason]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentReversalReason]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[AppliedDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="AppliedDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[AppliedDate]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[AppliedDate]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[ReversalDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="ReversalDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[ReversalDate]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReversalDate]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[BatchID]"
+                      cachedDataType="i4"
+                      cachedName="BatchID"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BatchID]"
+                      lineageId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output].Columns[BatchID]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[IsActive]"
+                      cachedDataType="i4"
+                      cachedName="IsActive"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[IsActive]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[LegacySourceSystem]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="LegacySourceSystem"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[LegacySourceSystem]"
+                      lineageId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output].Columns[LegacySourceSystem]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[BankAccountNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="BankAccountNumber"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountNumber]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[BankAccountNumber]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[CheckNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CheckNumber"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[CheckNumber]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckNumber]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[ReceivedDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="ReceivedDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[ReceivedDate]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReceivedDate]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[PaymentDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1333"
+                      cachedName="PaymentDescription"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentDescription]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentDescription]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[PaymentTypeCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="PaymentTypeCode"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentTypeCode]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentTypeCode]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[AccountNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="AccountNumber"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[AccountNumber]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNumber]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[PaymentSource]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PaymentSource"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentSource]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaymentSource]" />
+                    <inputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].Columns[Email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output].Columns[Email]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PaymentType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentSource]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PaymentSource" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PaymentMethod" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[IsInternalPayment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="IsInternalPayment" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[LegacyReferenceNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="LegacyReferenceNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentReversalReason]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PaymentReversalReason" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[AppliedDate]"
+                      dataType="dbTimeStamp"
+                      name="AppliedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[ReversalDate]"
+                      dataType="dbTimeStamp"
+                      name="ReversalDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[IsActive]"
+                      dataType="bool"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BatchID]"
+                      dataType="i4"
+                      name="BatchID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      name="DateAdded" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PublicID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="PublicID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      name="DateUpdated" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[GWRowNumber]"
+                      dataType="i8"
+                      name="GWRowNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BeanVersion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="BeanVersion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BankName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="BankName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BankCity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="BankCity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="BankAccountType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BankABANumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="BankABANumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[LegacySourceSystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="LegacySourceSystem" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentReceivedID]"
+                      dataType="i4"
+                      name="PaymentReceivedID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[ReversalPaymentReplacementInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ReversalPaymentReplacementInd" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="BankAccountNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[CheckNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[DataEffectiveDate]"
+                      dataType="dbTimeStamp"
+                      name="DataEffectiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[DataExpirationDate]"
+                      dataType="dbTimeStamp"
+                      name="DataExpirationDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[ReceivedDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReceivedDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1333"
+                      name="PaymentDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[PaymentTypeCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="PaymentTypeCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[AccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="AccountNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Email" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[Conditional Split Default Output]"
+              endId="Package\DFT - DimPaymentReceived\CNT - Update Count.Inputs[Row Count Input 1]"
+              name="Conditional Split Default Output"
+              startId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[Conditional Split Default Output]" />
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[Derived Column Output]"
+              endId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[Lookup Match Output]"
+              endId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[Lookup No Match Output]"
+              endId="Package\DFT - DimPaymentReceived\CNT - Insert  Count.Inputs[Row Count Input 1]"
+              name="Lookup No Match Output"
+              startId="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[OLE DB Source Output]"
+              endId="Package\DFT - DimPaymentReceived\CNT - Source Count.Inputs[Row Count Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - DimPaymentReceived\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[Row Count Output 1]"
+              endId="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy.Inputs[Derived Column Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT - DimPaymentReceived\CNT - Source Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[Row Count Output 11]"
+              endId="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT - DimPaymentReceived\CNT - Insert  Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[Row Count Output 12]"
+              endId="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived.Inputs[OLE DB Command Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT - DimPaymentReceived\CNT - Update Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\DFT - DimPaymentReceived.Paths[SameBeanVersion]"
+              endId="Package\DFT - DimPaymentReceived\CNT - Unchange Count.Inputs[Row Count Input 1]"
+              name="SameBeanVersion"
+              startId="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion.Outputs[SameBeanVersion]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Conclude Process Completed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{35ADEDFE-46C5-46C4-82E2-B0F8AE7D59BE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Conclude Process Completed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="Update dmproc.Audit&#xA;Set Status = 'Completed'&#xA;  , CompletedInd = 1&#xA;  , ConcludeDtm = Getdate()&#xA;  , SourceCount = ?&#xA;  , InsertCount = ?&#xA;  , UpdateCount = ?&#xA;  , UnChangeCount = ?&#xA;Where ControlID = (Select ControlID From dmproc.AuditReference Where ETLPackage = ?)&#xA;and BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SourceCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::InsertCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::UpdateCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::UnChangeCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="200" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="5"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Conclude Process Failed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{42B9EA3D-1A6A-4479-89E3-B5B272A2ADEA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Conclude Process Failed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL - Conclude Process Failed.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{65D9BB95-84FE-4BE4-9C6B-9D261260A2DD}"
+          DTS:EventID="571707532"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{91ED852D-07C5-4EAE-B1DB-7F0EC07F8D56}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="Update dmproc.Audit&#xA;Set Status = 'Failed'&#xA;  , CompletedInd = 0&#xA;  , ConcludeDtm = Getdate()&#xA;  , SourceCount = ?&#xA;  , InsertCount = ?&#xA;  , UpdateCount = ?&#xA;  , UnChangeCount = ?&#xA;Where ControlID = (Select ControlID From dmproc.AuditReference Where ETLPackage = ?)&#xA;and BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SourceCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::InsertCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::UpdateCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::UnChangeCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="5"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL- Initiate Process"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2BFD28A3-3B93-40B1-99B6-A3D112A80ACB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL- Initiate Process"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="Insert into dmproc.Audit  (ControlID,BatchID,Status,InitiateDtm)&#xA;Select ControlID,?,'Started',Getdate()&#xA;From dmproc.AuditReference&#xA;Where ETLPackage = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8E6FD965-B51C-4596-8179-0DCECB677E55}"
+      DTS:From="Package\DFT - DimPaymentReceived"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SQL - Conclude Process Completed" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A576F3D3-74B0-41E4-BC3F-1EBCCF99F2E6}"
+      DTS:From="Package\SQL- Initiate Process"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DFT - DimPaymentReceived" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{09AEDAB8-8B60-4925-9403-0ADC1B17E308}"
+      DTS:From="Package\DFT - DimPaymentReceived"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL - Conclude Process Failed"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{DD866A37-860F-4130-AD6B-B5023A83FFBA}"
+      DTS:EventID="731809904"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{3123F89C-42DB-4788-8C01-D91CA9FA2B52}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL - Error Log"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3CD39AF4-CF24-40C6-8F6A-09FF45946EE6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Error Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="&#xA;Insert into [dmproc].[ErrorLog] (ControlID,BatchID,error_type_cd,error_number,error_message)&#xA;Select ControlID &#xA;     , ?&#xA;     , 'E'&#xA;     , ?&#xA;     , ?&#xA;From dmproc.AuditReference Where ETLPackage = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="2000" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="2000" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="210,42"
+          Id="Package\DFT - DimPaymentReceived"
+          TopLeft="350.857147095155,115.541177740394" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\SQL - Conclude Process Completed"
+          TopLeft="241.714289217579,217.788238348515" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\SQL - Conclude Process Failed"
+          TopLeft="484.885721681556,219.364708190311" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\SQL- Initiate Process"
+          TopLeft="350.857147095155,32.8235297206364" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="422.190480428488,157.541177740394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-75.4761912109093,60.247060608121"
+              Start="0,0"
+              End="-75.4761912109093,52.747060608121">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3721568433608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3721568433608"
+                    Point2="0,24.3721568433608"
+                    Point3="-4,24.3721568433608" />
+                  <mssgle:LineSegment
+                    End="-71.4761912109093,24.3721568433608" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-71.4761912109093,24.3721568433608"
+                    Point2="-75.4761912109093,24.3721568433608"
+                    Point3="-75.4761912109093,28.3721568433608" />
+                  <mssgle:LineSegment
+                    End="-75.4761912109093,52.747060608121" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="455.857147095155,74.8235297206364">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.7176480197576"
+              Start="0,0"
+              End="0,33.2176480197576">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.2176480197576" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="489.523813761822,157.541177740394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="100.361907919734,61.823530449917"
+              Start="0,0"
+              End="100.361907919734,54.323530449917">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0098970062046" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.0098970062046"
+                    Point2="0,25.0098970062046"
+                    Point3="4,25.0098970062046" />
+                  <mssgle:LineSegment
+                    End="96.3619079197343,25.0098970062046" />
+                  <mssgle:CubicBezierSegment
+                    Point1="96.3619079197343,25.0098970062046"
+                    Point2="100.361907919734,25.0098970062046"
+                    Point3="100.361907919734,29.0098970062046" />
+                  <mssgle:LineSegment
+                    End="100.361907919734,54.323530449917" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="34.9396063036172,30.0098970062046,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="206,42"
+          Id="Package.EventHandlers[OnError]\SQL - Error Log"
+          TopLeft="253.6,92.8" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DFT - DimPaymentReceived">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\CNT - Source Count"
+          TopLeft="303.324491111044,79.145098096414" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\CNT - Insert  Count"
+          TopLeft="5.6857146652377,223.658823718166" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\CSPL - Check BeanVersion"
+          TopLeft="303.324491111044,294.229413025932" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\DFT - DimPaymentReceived\OLE DB Source"
+          TopLeft="299,5" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\DRV - BatchID &amp; Legacy"
+          TopLeft="303.324491111044,151.40196090729" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\CNT - Update Count"
+          TopLeft="303.324491111044,368.172549339919" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived"
+          TopLeft="8.52857128260089,294.229413025932" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived"
+          TopLeft="303.324491111044,223.658823718166" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\CNT - Unchange Count"
+          TopLeft="588.542865677269,294.229413025932" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT - DimPaymentReceived\CMD - Update DimPaymentReceived"
+          TopLeft="303.324491111044,440.429412150795" />
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[SameBeanVersion]"
+          TopLeft="553.324491111044,315.229413025932">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="35.2183745662253,0"
+              Start="0,0"
+              End="27.7183745662253,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="27.7183745662253,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26.1634103731374,5,80.0451953125,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[Row Count Output 12]"
+          TopLeft="428.324491111044,410.172549339919">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.2568628108762"
+              Start="0,0"
+              End="0,22.7568628108762">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7568628108762" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[Row Count Output 11]"
+          TopLeft="132.107142973919,265.658823718166">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.5705893077656"
+              Start="0,0"
+              End="0,21.0705893077656">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0705893077656" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[Row Count Output 1]"
+          TopLeft="428.324491111044,121.145098096414">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.2568628108762"
+              Start="0,0"
+              End="0,22.7568628108762">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7568628108762" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[OLE DB Source Output]"
+          TopLeft="375,47">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="53.324491111044,32.145098096414"
+              Start="0,0"
+              End="53.324491111044,24.645098096414">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.072549048207" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.072549048207"
+                    Point2="0,16.072549048207"
+                    Point3="4,16.072549048207" />
+                  <mssgle:LineSegment
+                    End="49.324491111044,16.072549048207" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.324491111044,16.072549048207"
+                    Point2="53.324491111044,16.072549048207"
+                    Point3="53.324491111044,20.072549048207" />
+                  <mssgle:LineSegment
+                    End="53.324491111044,24.645098096414" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[Lookup No Match Output]"
+          TopLeft="303.324491111044,244.658823718166">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-47.6387764458059,0"
+              Start="0,0"
+              End="-40.1387764458059,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-40.1387764458059,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-75.875774941653,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[Lookup Match Output]"
+          TopLeft="428.324491111044,265.658823718166">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.5705893077656"
+              Start="0,0"
+              End="0,21.0705893077656">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0705893077656" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,4.7306071538828,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[Derived Column Output]"
+          TopLeft="428.324491111044,193.40196090729">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.2568628108762"
+              Start="0,0"
+              End="0,22.7568628108762">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7568628108762" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DimPaymentReceived.Paths[Conditional Split Default Output]"
+          TopLeft="428.324491111044,336.229413025932">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.9431363139868"
+              Start="0,0"
+              End="0,24.4431363139868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4431363139868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-70.61390625,6.39246659449341,141.2278125,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DimPaymentReceived\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DimPaymentReceived\OLE_DEST - Load PaymentReceived">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DimPaymentReceived\LKP - DimPaymentReceived">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

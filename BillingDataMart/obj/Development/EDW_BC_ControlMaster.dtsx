@@ -1,0 +1,1161 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/3/2015 10:40:22 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MMVDIGWCV9005"
+  DTS:CreatorName="MMI\t161347"
+  DTS:DTSID="{99401045-E3E4-4B86-B2EE-3F3A07AF9EAC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="EDW_BC_ControlMaster"
+  DTS:PackageType="5"
+  DTS:VersionBuild="202"
+  DTS:VersionGUID="{9A4A04F3-A0F7-4DC8-9F19-4D4F65EAE66C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B1B7FB6-7B6C-4D22-A9F0-DA313E246055}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8339B261-AEC0-4420-B123-E92C1A6335D0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IncrementDays">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Batch ID"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3C766ADE-38AE-4DC2-875E-30E5798A438E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Batch ID">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Batch ID\SQL - Fetch Increment Days"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{34D410DE-9E84-45F4-98CA-EA062FA3AB8A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Fetch Increment Days"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="Select 0-NumberofDays as NumberofDays&#xA;from [EDWIncrementalLoad]&#xA;where Application = 'Billing'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="NumberofDays"
+                SQLTask:DtsVariableName="User::IncrementDays" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Batch ID\SQL - Get BatchID"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A16BB758-F8FD-4AFB-802D-495AC1E3500C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Get BatchID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="SELECT MAX(BatchID) AS BatchID &#xA;FROM dmproc.BatchIdentifier &#xA;WHERE LOB = 'EDW-BC'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="BatchID"
+                SQLTask:DtsVariableName="User::BatchID" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Batch ID\SQL - Set BatchID"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DC8710C4-35F8-4EF6-B6F7-385FEA8F8FA0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Set BatchID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="INSERT INTO dmproc.BatchIdentifier (ETLPackage,LOB,Status) VALUES (?,'EDW-BC','Started')&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Batch ID.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E13B4688-BE7B-4AC5-83AB-9960F93459F4}"
+          DTS:From="Package\SEQC - Batch ID\SQL - Set BatchID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC - Batch ID\SQL - Get BatchID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Batch ID.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{F3625A2A-120F-47FC-B701-F98F3759B242}"
+          DTS:From="Package\SEQC - Batch ID\SQL - Get BatchID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQC - Batch ID\SQL - Fetch Increment Days" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - EDW"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{68FFC82C-FDB2-4E4E-ADC1-D3763662C8AB}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - EDW">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - EDW\Insert Orphan Records to all Dimensions"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B565BA26-A0E1-4162-8AE7-5C4D7C8644CB}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert Orphan Records to all Dimensions"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="exec [dbo].[UnknownRow] 'DimAgency','dbo'&#xA;exec [dbo].[UnknownRow] 'DimBillingAccount','dbo'&#xA;exec [dbo].[UnknownRow] 'DimBillingTransaction','dbo'&#xA;exec [dbo].[UnknownRow] 'DimCompany','dbo'&#xA;exec [dbo].[UnknownRow] 'DimDisbursement','dbo'&#xA;exec [dbo].[UnknownRow] 'DimInvoice','dbo'&#xA;exec [dbo].[UnknownRow] 'DimInvoiceItem','dbo'&#xA;exec [dbo].[UnknownRow] 'DimPaymentDistribution','dbo'&#xA;exec [dbo].[UnknownRow] 'DimPaymentReceived','dbo'&#xA;exec [dbo].[UnknownRow] 'DimPlan','dbo'&#xA;exec [dbo].[UnknownRow] 'DimPolicy','dbo'&#xA;exec [dbo].[UnknownRow] 'DimProducer','dbo'&#xA;exec [dbo].[UnknownRow] 'DimUser','dbo'&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{1AED8F2A-7092-4360-A002-FBAB78628028}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC - Dimension Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads Company"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{688958bb-bb2f-4c0b-be7a-586e915b62c6}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads Company"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimCompany.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimAgency"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{3C35EF74-CBAF-4FE8-8740-FFBD147FD5F5}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimAgency"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimAgency.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimBillingAccount"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{69B27407-9FDC-4820-BAB4-F6F8416D74E8}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimBillingAccount"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimBillingAccount.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimBillingTransactions"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{CF51DB06-016A-45D7-9FCD-101AB98E9027}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimBillingTransactions"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimBillingTransaction.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimDisbursement"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{883F6AC7-6159-4FDB-AA30-40908575B9C2}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimDisbursement"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimDisbursement.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimInvoice"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{B45374D4-945D-4C0C-A28C-713D3F1B4B35}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimInvoice"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimInvoice.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimInvoiceItem"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{06D76BFA-1F0D-4C0E-8F7B-22CCB021341D}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimInvoiceItem"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimInvoiceItem.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimPaymentReceived"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{3D919667-9878-4920-AC60-370A3D8CF226}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimPaymentReceived"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimPaymentReceived.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimPlan"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{CB9ADEDE-691D-4BF5-9908-2DCF87FBBA40}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimPlan"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimPlan.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimPolicy"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{5829894a-65c8-452b-9ae3-da434b1e5bc3}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimPolicy"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimPolicy.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimProducer"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{017f5e95-ae35-4808-8441-3337abdb771e}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimProducer"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimProducer.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimUser"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{791A56ED-D594-4786-B0CE-FFDE57F1EAB4}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads DimUser"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimUser.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads IntegrationTables"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="EPT - Loads IntegrationTables"
+              DTS:DTSID="{382D21E5-C847-4B04-B95A-615C3AF6C86D}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT - Loads IntegrationTables"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_IntegrationTables.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT- Loads DimPaymentDistribution"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{3D9F83FB-82A9-489C-84FF-E5191C685885}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EPT- Loads DimPaymentDistribution"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_DimPaymentDistribution.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - EDW\SEQC - Fact Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{927A153E-F4E1-463F-96A8-3DDA56B7D021}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC - Fact Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactBillingTransaction"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{23A93CA4-3503-4910-8D9E-7AFFFC2E3AB5}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Loads FactBillingTransaction"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_FactBillingTransaction.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactCommission"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{BA0821D2-9CC9-47DE-8670-4A48DEC88238}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Loads FactCommission"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_FactCommission.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactInvoiceItem"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{760853F4-61E2-4B15-B782-8358A9C05BDB}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Loads FactInvoiceItem"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_FactInvoiceItem.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactPaymentDistribution"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{3ADA1217-DAAF-4D28-AA4A-8571632E8354}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Loads FactPaymentDistribution"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_FactPaymentDistribution.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactPaymentReceived"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{F429188A-72BD-4635-8FFF-916BE410D003}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Loads FactPaymentReceived"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Load_FactPaymentReceived.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - EDW\SEQC - Fact Sequence Container\Update DimBillingTransaction"
+              DTS:CreationName="Microsoft.ExecutePackageTask"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{0C7A24A9-64FD-432A-94AD-BBB7E1275885}"
+              DTS:ExecutableType="Microsoft.ExecutePackageTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Update DimBillingTransaction"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>EDW_BC_Update_DimBillingTransaction.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\SEQC - EDW\SEQC - Fact Sequence Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{76560AC5-86B2-44D9-999C-87282BDE9D62}"
+              DTS:From="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactBillingTransaction"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\SEQC - EDW\SEQC - Fact Sequence Container\Update DimBillingTransaction" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - EDW\SQL - Check Validation"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1DE5F036-AA87-46EC-B6AC-F8176925281C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Check Validation"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[spSendEmailForDailyValidation] ?&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - EDW.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{9928C70B-4580-4CC5-BBB9-2374EB5EE243}"
+          DTS:From="Package\SEQC - EDW\Insert Orphan Records to all Dimensions"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC - EDW\SEQC - Dimension Sequence Container" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - EDW.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{1BAD969C-2641-41A4-8861-A20F212CA524}"
+          DTS:From="Package\SEQC - EDW\SEQC - Dimension Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQC - EDW\SEQC - Fact Sequence Container" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - EDW.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{F9982A8B-5B59-4A7A-811A-0CB9A5D71893}"
+          DTS:From="Package\SEQC - EDW\SEQC - Fact Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\SEQC - EDW\SQL - Check Validation" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL -  Conclude BatchID Completed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F1CEEED8-2A0E-4F63-9771-F78AB6A212E2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL -  Conclude BatchID Completed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="UPDATE Dmproc.BatchIdentifier&#xA;SET EndDate = getdate()&#xA;     , Status = 'Completed'&#xA;WHERE BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL -  Conclude BatchID Failed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F9A93C85-06B7-4A63-81CE-E831B4622A7B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL -  Conclude BatchID Failed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="UPDATE Dmproc.BatchIdentifier&#xA;SET EndDate = getdate()&#xA;     , Status = 'Failed'&#xA;WHERE BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6C0443A0-C2E6-416C-9E46-DBA65F016FB9}"
+      DTS:From="Package\SEQC - Batch ID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SEQC - EDW" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{14F119F7-3C6B-42B2-9F29-FC712332D6FE}"
+      DTS:From="Package\SEQC - EDW"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL -  Conclude BatchID Completed" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{36AB1689-06BE-4E1D-8067-5C94B3866FDC}"
+      DTS:From="Package\SEQC - EDW"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL -  Conclude BatchID Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{939D852C-EB0D-433D-846F-E4E290BCF83D}"
+      DTS:From="Package\SEQC - Batch ID"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL -  Conclude BatchID Failed"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{B4E532DA-5EE8-4D53-9173-4820EE21F708}"
+      DTS:EventID="919978496"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{08C74DB6-A61C-420F-8004-04EEB0136F06}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL - Error Log"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8E393B2F-FBB6-4463-A7C4-F0796770DFE9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Error Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="Insert into [dmproc].[ErrorLog] (ControlID,BatchID,error_type_cd,error_number,error_message)&#xA;Select ControlID &#xA;     , ?&#xA;     , 'E'&#xA;     , ?&#xA;     , ?&#xA;From dmproc.AuditReference Where ETLPackage = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="2000" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="2000" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\SEQC - Batch ID\SQL - Fetch Increment Days"
+          TopLeft="41.5740740740741,176" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\SEQC - Batch ID\SQL - Get BatchID"
+          TopLeft="41.5740740740741,102.944444444444" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\SEQC - Batch ID\SQL - Set BatchID"
+          TopLeft="41.5740740740741,23.1666666666667" />
+        <EdgeLayout
+          Id="Package\SEQC - Batch ID.PrecedenceConstraints[Constraint]"
+          TopLeft="148.574074074074,65.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7777777777773"
+              Start="0,0"
+              End="0,30.2777777777773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2777777777773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Batch ID.PrecedenceConstraints[Constraint 1]"
+          TopLeft="148.574074074074,144.944444444444">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.055555555556"
+              Start="0,0"
+              End="0,23.555555555556">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.555555555556" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="276,253"
+          Size="276,296"
+          Id="Package\SEQC - Batch ID"
+          TopLeft="67.2857145971186,407.916666666667" />
+        <NodeLayout
+          Size="271,42"
+          Id="Package\SEQC - EDW\Insert Orphan Records to all Dimensions"
+          TopLeft="290,7" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads Company"
+          TopLeft="278,201" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimAgency"
+          TopLeft="15,194" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimBillingAccount"
+          TopLeft="17.6666666666667,16" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimBillingTransactions"
+          TopLeft="275.444444444444,128" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimDisbursement"
+          TopLeft="533.222222222222,128" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimInvoice"
+          TopLeft="275.444444444444,16" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimInvoiceItem"
+          TopLeft="17.6666666666667,72" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimPaymentReceived"
+          TopLeft="17.6666666666667,128" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimPlan"
+          TopLeft="533.222222222222,16" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimPolicy"
+          TopLeft="272,257" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimProducer"
+          TopLeft="22,249" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads DimUser"
+          TopLeft="275.444444444444,72" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT - Loads IntegrationTables"
+          TopLeft="512,196.5" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container\EPT- Loads DimPaymentDistribution"
+          TopLeft="533.222222222222,72" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="789,359"
+          Size="789,402"
+          Id="Package\SEQC - EDW\SEQC - Dimension Sequence Container"
+          TopLeft="37.2857145971175,104.666666666666" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactBillingTransaction"
+          TopLeft="510.727272727273,13.727272727273" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactCommission"
+          TopLeft="26.0857189567721,89.9882389319397" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactInvoiceItem"
+          TopLeft="255.885719569848,90.776472758917" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactPaymentDistribution"
+          TopLeft="266,11" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\SEQC - EDW\SEQC - Fact Sequence Container\Loads FactPaymentReceived"
+          TopLeft="23.0857189567721,12.9882389319397" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\SEQC - EDW\SEQC - Fact Sequence Container\Update DimBillingTransaction"
+          TopLeft="506.085718956772,82.9882389319397" />
+        <EdgeLayout
+          Id="Package\SEQC - EDW\SEQC - Fact Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="615.656495842023,55.727272727273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.2609662046667"
+              Start="0,0"
+              End="0,19.7609662046667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.7609662046667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="782,172"
+          Size="782,215"
+          Id="Package\SEQC - EDW\SEQC - Fact Sequence Container"
+          TopLeft="41.4380988581652,557.321572556985" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\SEQC - EDW\SQL - Check Validation"
+          TopLeft="338.79870171715,815.304638115967" />
+        <EdgeLayout
+          Id="Package\SEQC - EDW.PrecedenceConstraints[Constraint]"
+          TopLeft="428.642857298559,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.666666666666"
+              Start="0,0"
+              End="0,48.166666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.166666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - EDW.PrecedenceConstraints[Constraint 1]"
+          TopLeft="432.111906727641,506.666666666666">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.6549058903191"
+              Start="0,0"
+              End="0,43.1549058903191">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.1549058903191" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - EDW.PrecedenceConstraints[Constraint 3]"
+          TopLeft="432.618400287658,772.321572556985">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.9830655589819"
+              Start="0,0"
+              End="0,35.4830655589819">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.4830655589819" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="864,884"
+          Size="864,927"
+          Id="Package\SEQC - EDW"
+          TopLeft="441.722222222222,125.919418985433" />
+        <NodeLayout
+          Size="251,42"
+          Id="Package\SQL -  Conclude BatchID Completed"
+          TopLeft="1428,575.666666666667" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\SQL -  Conclude BatchID Failed"
+          TopLeft="117.666666666667,790" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="343.285714597119,555.916666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98.4365076251033,-119.663914347901"
+              Start="0,0"
+              End="90.9365076251033,-119.663914347901">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="54.9601395014888,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="54.9601395014888,0"
+                    Point2="58.9601395014888,0"
+                    Point3="58.9601395014888,-4" />
+                  <mssgle:LineSegment
+                    End="58.9601395014888,-115.663914347901" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.9601395014888,-115.663914347901"
+                    Point2="58.9601395014888,-119.663914347901"
+                    Point3="62.9601395014888,-119.663914347901" />
+                  <mssgle:LineSegment
+                    End="90.9365076251033,-119.663914347901" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="1305.72222222222,593.04304282605">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="122.277777777778,0"
+              Start="0,0"
+              End="114.777777777778,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="114.777777777778,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="441.722222222222,742.5860856521">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-153.055555555555,68.4139143479005"
+              Start="0,0"
+              End="-145.555555555555,68.4139143479005">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-57.3804532510109,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-57.3804532510109,0"
+                    Point2="-61.3804532510109,0"
+                    Point3="-61.3804532510109,4" />
+                  <mssgle:LineSegment
+                    End="-61.3804532510109,64.4139143479005" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-61.3804532510109,64.4139143479005"
+                    Point2="-61.3804532510109,68.4139143479005"
+                    Point3="-65.3804532510109,68.4139143479005" />
+                  <mssgle:LineSegment
+                    End="-145.555555555555,68.4139143479005" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-76.6218009072608,-15.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="204.226190631893,703.916666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86.083333333333"
+              Start="0,0"
+              End="0,78.583333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.583333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,34.4171549479165,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="208,42"
+          Id="Package.EventHandlers[OnError]\SQL - Error Log"
+          TopLeft="412,139" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

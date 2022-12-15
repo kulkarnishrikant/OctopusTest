@@ -1,0 +1,3054 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/22/2015 3:09:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MM643VAMUDW7"
+  DTS:CreatorName="MMI\t159079"
+  DTS:DTSID="{AC9C4555-9263-4138-8493-D91734005094}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="EDW_BC_Load_IntegrationTables"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="123"
+  DTS:VersionGUID="{79338EC9-586E-495A-B711-AD193F2C8D37}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="BatchID"
+      DTS:ConfigurationVariable="\Package.Variables[User::BatchID].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{EE289A25-043A-401F-841C-FACC720C6641}"
+      DTS:ObjectName="ConfigBatchID" />
+    <DTS:Configuration
+      DTS:ConfigurationString="IncrementDays"
+      DTS:ConfigurationVariable="\Package.Variables[User::IncrementDays].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{5760E7BF-80EC-4AC5-98DE-819496F14D1F}"
+      DTS:ObjectName="configIncrementDays" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E28B6457-A528-46C4-904F-4E145F2A0F82}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4EBD871A-7C8B-4EC4-BA92-6B16C20FA8CD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="IncrementDays">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1D4C68ED-E818-4CA5-8ACC-2C055DA497C9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="InsertCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ED6B994D-AE96-4227-87F1-B559C4B8012C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7DF56103-DD70-4C59-9CED-F63B6407DBB3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UnChangeCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5AD1ED41-12E5-4156-85E9-A6D7167D16C7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UpdateCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load CashTransaction and CashReconcilation"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DEBECBE1-84F6-49A9-80FA-D95163498440}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load CashTransaction and CashReconcilation"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\CNT - Cash Source Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Cash Source Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::SourceCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\CNT - Cash Source Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\CNT - Cash Source Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\CNT - Cash Source Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Insert  Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::InsertCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count 1"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Insert  Count 1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::InsertCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count 1.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count 1.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count 1.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\CNT - Recon Source Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Recon Source Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::SourceCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\CNT - Recon Source Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\CNT - Recon Source Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\CNT - Recon Source Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Get BatchID &amp; AddedByUser"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Output].Columns[BatchID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Output].Columns[BatchID]"
+                      name="BatchID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::BatchID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::BatchID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Output].Columns[LegacySourceSystem]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Output].Columns[LegacySourceSystem]"
+                      name="LegacySourceSystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,25,1252)@[$Project::LegacySourceSystem]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,25,1252)@[$Project::LegacySourceSystem]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Get BatchID &amp; AddedByUser 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Output].Columns[BatchID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Output].Columns[BatchID]"
+                      name="BatchID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::BatchID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::BatchID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Output].Columns[LegacySourceSystem]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Output].Columns[LegacySourceSystem]"
+                      name="LegacySourceSystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,25,1252)@[$Project::LegacySourceSystem]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,25,1252)@[$Project::LegacySourceSystem]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP -Cash Reconcilation"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select Id from [stage].[CASHRECONCILIATION]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select Id from [stage].[CASHRECONCILIATION]) [refTable]
+where [refTable].[Id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load CashTransaction and CashReconcilation\824:invalid};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Inputs[Lookup Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP -Cash Transaction"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select Id from [stage].[CASHTRANSACTION]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select Id from [stage].[CASHTRANSACTION]) [refTable]
+where [refTable].[Id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load CashTransaction and CashReconcilation\825:invalid};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Inputs[Lookup Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DEST - Load CashReconcilation"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage].[CASHRECONCILIATION]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">10000</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[LegacySourceSystem]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="LegacySourceSystem"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[LegacySourceSystem]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Output].Columns[LegacySourceSystem]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[CREATEDATETIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CREATEDATETIME"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[CREATEDATETIME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[CREATEDATETIME]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[UPDATEDATETIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UPDATEDATETIME"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[UPDATEDATETIME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[UPDATEDATETIME]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="STATUS"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[STATUS]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[STATUS]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[APPLIEDTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="APPLIEDTO"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[APPLIEDTO]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[APPLIEDTO]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[BatchID]"
+                      cachedDataType="i4"
+                      cachedName="BatchID"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[batchid]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Output].Columns[BatchID]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[PROCESSDATE]"
+                      cachedDataType="dbDate"
+                      cachedName="PROCESSDATE"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[PROCESSDATE]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[PROCESSDATE]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[FILENAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="FILENAME"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[FILENAME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[FILENAME]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[SOURCE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="SOURCE"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[SOURCE]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[SOURCE]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[COUNT]"
+                      cachedDataType="i4"
+                      cachedName="COUNT"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[COUNT]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[COUNT]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[AMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="AMOUNT"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[AMOUNT]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[AMOUNT]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[CHANNEL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="CHANNEL"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[CHANNEL]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[CHANNEL]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].Columns[SOURCESYSTEM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="SOURCESYSTEM"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[SOURCESYSTEM]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[SOURCESYSTEM]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[LegacySourceSystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LegacySourceSystem" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[CREATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      name="CREATEDATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[UPDATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      name="UPDATEDATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[APPLIEDTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="APPLIEDTO" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[batchid]"
+                      dataType="i4"
+                      name="batchid" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[PROCESSDATE]"
+                      dataType="dbDate"
+                      name="PROCESSDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[FILENAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FILENAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[SOURCE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="SOURCE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[COUNT]"
+                      dataType="i4"
+                      name="COUNT" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[AMOUNT]"
+                      dataType="numeric"
+                      name="AMOUNT"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[CHANNEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="CHANNEL" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input].ExternalColumns[SOURCESYSTEM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="SOURCESYSTEM" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DEST - Load CashTransaction"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage].[CASHTRANSACTION]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">10000</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[LegacySourceSystem]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="LegacySourceSystem"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[LegacySourceSystem]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Output].Columns[LegacySourceSystem]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[RECORDCODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="RECORDCODE"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[RECORDCODE]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[RECORDCODE]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[CHANNEL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="CHANNEL"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[CHANNEL]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[CHANNEL]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[POLICYNUMBER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="POLICYNUMBER"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[POLICYNUMBER]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[POLICYNUMBER]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[INSUREDNAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="INSUREDNAME"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[INSUREDNAME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[INSUREDNAME]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[EFFDATE]"
+                      cachedDataType="dbDate"
+                      cachedName="EFFDATE"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[EFFDATE]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[EFFDATE]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[PAYMENTAMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="PAYMENTAMOUNT"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PAYMENTAMOUNT]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PAYMENTAMOUNT]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[STATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="STATE"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[STATE]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[STATE]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[PAYMENT_DESC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PAYMENT_DESC"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PAYMENT_DESC]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PAYMENT_DESC]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[CREATEDATETIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CREATEDATETIME"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[CREATEDATETIME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[CREATEDATETIME]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[UPDATEDATETIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UPDATEDATETIME"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[UPDATEDATETIME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[UPDATEDATETIME]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="STATUS"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[STATUS]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[STATUS]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[FILEDESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="FILEDESCRIPTION"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[FILEDESCRIPTION]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[FILEDESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[APPLIEDTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="APPLIEDTO"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[APPLIEDTO]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[APPLIEDTO]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[RECONCILED]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="RECONCILED"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[RECONCILED]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[RECONCILED]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[ACCOUNTNUMBER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="22"
+                      cachedName="ACCOUNTNUMBER"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[ACCOUNTNUMBER]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[ACCOUNTNUMBER]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[PRODUCERID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="22"
+                      cachedName="PRODUCERID"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCERID]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PRODUCERID]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[BatchID]"
+                      cachedDataType="i4"
+                      cachedName="BatchID"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[batchid]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Output].Columns[BatchID]" />
+                    <inputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[LegacySourceSystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LegacySourceSystem" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[RECORDCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="RECORDCODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[CHANNEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="CHANNEL" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[POLICYNUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="POLICYNUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[INSUREDNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="INSUREDNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[EFFDATE]"
+                      dataType="dbDate"
+                      name="EFFDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PAYMENTAMOUNT]"
+                      dataType="numeric"
+                      name="PAYMENTAMOUNT"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[STATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="STATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PAYMENT_DESC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PAYMENT_DESC" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[CREATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      name="CREATEDATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[UPDATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      name="UPDATEDATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[FILEDESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FILEDESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[APPLIEDTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="APPLIEDTO" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[RECONCILED]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="RECONCILED" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[ACCOUNTNUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="22"
+                      name="ACCOUNTNUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCERID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="22"
+                      name="PRODUCERID" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input].ExternalColumns[batchid]"
+                      dataType="i4"
+                      name="batchid" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC - IT_CashReconcilation"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [ID]
+      ,[PROCESSDATE]
+      ,[FILENAME]
+      ,[SOURCE]
+      ,[CHANNEL]
+      ,[APPLIEDTO]
+      ,[COUNT]
+      ,[AMOUNT]
+      ,[STATUS]
+      ,[CREATEDATETIME]
+      ,[UPDATEDATETIME]
+,SOURCESYSTEM
+  FROM IntegrationDB.[dbo].[CASHRECONCILIATION]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Connections[OleDbConnection]"
+                  connectionManagerID="{EA62C0E7-CF0B-42BD-8840-CCEC8B17E6B2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[GWStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[PROCESSDATE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[PROCESSDATE]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[PROCESSDATE]"
+                      name="PROCESSDATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[FILENAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[FILENAME]"
+                      length="255"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[FILENAME]"
+                      name="FILENAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[SOURCE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[SOURCE]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[SOURCE]"
+                      name="SOURCE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[CHANNEL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[CHANNEL]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[CHANNEL]"
+                      name="CHANNEL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[APPLIEDTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[APPLIEDTO]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[APPLIEDTO]"
+                      name="APPLIEDTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[COUNT]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[COUNT]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[COUNT]"
+                      name="COUNT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[AMOUNT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[AMOUNT]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[AMOUNT]"
+                      name="AMOUNT"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[STATUS]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[STATUS]"
+                      name="STATUS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[CREATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[CREATEDATETIME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[CREATEDATETIME]"
+                      name="CREATEDATETIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[UPDATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[UPDATEDATETIME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[UPDATEDATETIME]"
+                      name="UPDATEDATETIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[SOURCESYSTEM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[SOURCESYSTEM]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].Columns[SOURCESYSTEM]"
+                      name="SOURCESYSTEM"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[PROCESSDATE]"
+                      dataType="dbDate"
+                      name="PROCESSDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[FILENAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FILENAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[SOURCE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="SOURCE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[CHANNEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="CHANNEL" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[APPLIEDTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="APPLIEDTO" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[COUNT]"
+                      dataType="i4"
+                      name="COUNT" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[AMOUNT]"
+                      dataType="numeric"
+                      name="AMOUNT"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[CREATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      name="CREATEDATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[UPDATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      name="UPDATEDATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output].ExternalColumns[SOURCESYSTEM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="SOURCESYSTEM" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[PROCESSDATE]"
+                      dataType="dbDate"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[PROCESSDATE]"
+                      name="PROCESSDATE" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[FILENAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[FILENAME]"
+                      name="FILENAME" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[SOURCE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[SOURCE]"
+                      name="SOURCE" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[CHANNEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[CHANNEL]"
+                      name="CHANNEL" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[APPLIEDTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[APPLIEDTO]"
+                      name="APPLIEDTO" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[COUNT]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[COUNT]"
+                      name="COUNT" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[AMOUNT]"
+                      dataType="numeric"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[AMOUNT]"
+                      name="AMOUNT"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[STATUS]"
+                      name="STATUS" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[CREATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[CREATEDATETIME]"
+                      name="CREATEDATETIME" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[UPDATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[UPDATEDATETIME]"
+                      name="UPDATEDATETIME" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[SOURCESYSTEM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[SOURCESYSTEM]"
+                      name="SOURCESYSTEM" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC - IT_CashTransaction"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [ID]
+      ,[RECORDCODE]
+      ,[CHANNEL]
+      ,[POLICYNUMBER]
+      ,[INSUREDNAME]
+      ,[EFFDATE]
+      ,[PAYMENTAMOUNT]
+      ,[STATE]
+      ,[PAYMENT_DESC]
+      ,[CREATEDATETIME]
+      ,[UPDATEDATETIME]
+      ,[STATUS]
+      ,[FILEDESCRIPTION]
+      ,[APPLIEDTO]
+      ,[RECONCILED]
+      ,[ACCOUNTNUMBER]
+      ,[PRODUCERID]
+  FROM IntegrationDB.[dbo].[CASHTRANSACTION]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Connections[OleDbConnection]"
+                  connectionManagerID="{EA62C0E7-CF0B-42BD-8840-CCEC8B17E6B2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[GWStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[RECORDCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[RECORDCODE]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[RECORDCODE]"
+                      name="RECORDCODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[CHANNEL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[CHANNEL]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[CHANNEL]"
+                      name="CHANNEL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[POLICYNUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[POLICYNUMBER]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[POLICYNUMBER]"
+                      name="POLICYNUMBER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[INSUREDNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[INSUREDNAME]"
+                      length="60"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[INSUREDNAME]"
+                      name="INSUREDNAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[EFFDATE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[EFFDATE]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[EFFDATE]"
+                      name="EFFDATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PAYMENTAMOUNT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[PAYMENTAMOUNT]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PAYMENTAMOUNT]"
+                      name="PAYMENTAMOUNT"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[STATE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      length="10"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[STATE]"
+                      name="STATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PAYMENT_DESC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[PAYMENT_DESC]"
+                      length="10"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PAYMENT_DESC]"
+                      name="PAYMENT_DESC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[CREATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[CREATEDATETIME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[CREATEDATETIME]"
+                      name="CREATEDATETIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[UPDATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[UPDATEDATETIME]"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[UPDATEDATETIME]"
+                      name="UPDATEDATETIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[STATUS]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[STATUS]"
+                      name="STATUS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[FILEDESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[FILEDESCRIPTION]"
+                      length="255"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[FILEDESCRIPTION]"
+                      name="FILEDESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[APPLIEDTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[APPLIEDTO]"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[APPLIEDTO]"
+                      name="APPLIEDTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[RECONCILED]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[RECONCILED]"
+                      length="5"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[RECONCILED]"
+                      name="RECONCILED"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[ACCOUNTNUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNTNUMBER]"
+                      length="22"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[ACCOUNTNUMBER]"
+                      name="ACCOUNTNUMBER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PRODUCERID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[PRODUCERID]"
+                      length="22"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].Columns[PRODUCERID]"
+                      name="PRODUCERID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[RECORDCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="RECORDCODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[CHANNEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="CHANNEL" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[POLICYNUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="POLICYNUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[INSUREDNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="INSUREDNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[EFFDATE]"
+                      dataType="dbDate"
+                      name="EFFDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[PAYMENTAMOUNT]"
+                      dataType="numeric"
+                      name="PAYMENTAMOUNT"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="STATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[PAYMENT_DESC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PAYMENT_DESC" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[CREATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      name="CREATEDATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[UPDATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      name="UPDATEDATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[FILEDESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FILEDESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[APPLIEDTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="APPLIEDTO" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[RECONCILED]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="RECONCILED" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNTNUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="22"
+                      name="ACCOUNTNUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output].ExternalColumns[PRODUCERID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="22"
+                      name="PRODUCERID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[RECORDCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[RECORDCODE]"
+                      name="RECORDCODE" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[CHANNEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[CHANNEL]"
+                      name="CHANNEL" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[POLICYNUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[POLICYNUMBER]"
+                      name="POLICYNUMBER" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[INSUREDNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[INSUREDNAME]"
+                      name="INSUREDNAME" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[EFFDATE]"
+                      dataType="dbDate"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[EFFDATE]"
+                      name="EFFDATE" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[PAYMENTAMOUNT]"
+                      dataType="numeric"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[PAYMENTAMOUNT]"
+                      name="PAYMENTAMOUNT"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[STATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[STATE]"
+                      name="STATE" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[PAYMENT_DESC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[PAYMENT_DESC]"
+                      name="PAYMENT_DESC" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[CREATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[CREATEDATETIME]"
+                      name="CREATEDATETIME" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[UPDATEDATETIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[UPDATEDATETIME]"
+                      name="UPDATEDATETIME" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[STATUS]"
+                      name="STATUS" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[FILEDESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[FILEDESCRIPTION]"
+                      name="FILEDESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[APPLIEDTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[APPLIEDTO]"
+                      name="APPLIEDTO" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[RECONCILED]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[RECONCILED]"
+                      name="RECONCILED" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[ACCOUNTNUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="22"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[ACCOUNTNUMBER]"
+                      name="ACCOUNTNUMBER" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[PRODUCERID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="22"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[PRODUCERID]"
+                      name="PRODUCERID" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[Derived Column Output]"
+              endId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[Derived Column Output1]"
+              endId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[Lookup No Match Output]"
+              endId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count.Inputs[Row Count Input 1]"
+              name="Lookup No Match Output"
+              startId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[Lookup No Match Output1]"
+              endId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count 1.Inputs[Row Count Input 1]"
+              name="Lookup No Match Output"
+              startId="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[OLE DB Source Output]"
+              endId="Package\Load CashTransaction and CashReconcilation\CNT - Cash Source Count.Inputs[Row Count Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[OLE DB Source Output1]"
+              endId="Package\Load CashTransaction and CashReconcilation\CNT - Recon Source Count.Inputs[Row Count Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[Row Count Output 1]"
+              endId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser.Inputs[Derived Column Input]"
+              name="Row Count Output 1"
+              startId="Package\Load CashTransaction and CashReconcilation\CNT - Cash Source Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[Row Count Output 11]"
+              endId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[Row Count Output 12]"
+              endId="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1.Inputs[Derived Column Input]"
+              name="Row Count Output 1"
+              startId="Package\Load CashTransaction and CashReconcilation\CNT - Recon Source Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Load CashTransaction and CashReconcilation.Paths[Row Count Output 13]"
+              endId="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count 1.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Conclude Process Completed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D490A867-565A-4CAC-8F3F-FF2F7BBE67E4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Conclude Process Completed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="Update dmproc.Audit&#xA;Set Status = 'Completed'&#xA;  , CompletedInd = 1&#xA;  , ConcludeDtm = Getdate()&#xA;  , SourceCount = ?&#xA;  , InsertCount = ?&#xA;  , UpdateCount = ?&#xA;  , UnChangeCount = ?&#xA;Where ControlID = (Select ControlID From dmproc.AuditReference Where ETLPackage = ?)&#xA;and BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SourceCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::InsertCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::UpdateCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::UnChangeCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="200" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="5"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Conclude Process Failed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9CEAA38D-B824-4A46-96D2-C465236B8370}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Conclude Process Failed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="Update dmproc.Audit&#xA;Set Status = 'Failed'&#xA;  , CompletedInd = 0&#xA;  , ConcludeDtm = Getdate()&#xA;  , SourceCount = ?&#xA;  , InsertCount = ?&#xA;  , UpdateCount = ?&#xA;  , UnChangeCount = ?&#xA;Where ControlID = (Select ControlID From dmproc.AuditReference Where ETLPackage = ?)&#xA;and BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SourceCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::InsertCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::UpdateCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::UnChangeCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="5"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL- Initiate Process"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{591CD6A2-E7C3-4AE9-A3F1-398925FD8347}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL- Initiate Process"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="Insert into dmproc.Audit  (ControlID,BatchID,Status,InitiateDtm)&#xA;Select ControlID,?,'Started',Getdate()&#xA;From dmproc.AuditReference&#xA;Where ETLPackage = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stage Tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A7193B21-2041-4EB1-8850-919F9D29830E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stage Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="Truncate table [stage].[CASHRECONCILIATION];&#xA;Truncate table [stage].[CASHTRANSACTION];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CDB83CF7-D69F-4A26-A89D-DF346ACA5680}"
+      DTS:From="Package\Truncate Stage Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load CashTransaction and CashReconcilation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{928FBFEB-4E75-4B08-A2BC-4B12BB96570C}"
+      DTS:From="Package\Load CashTransaction and CashReconcilation"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL - Conclude Process Completed" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{19375195-8B07-420F-8AC1-116E09680CBA}"
+      DTS:From="Package\Load CashTransaction and CashReconcilation"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL - Conclude Process Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{25952847-C47A-4AE5-B9BF-4F66C2458E6D}"
+      DTS:From="Package\SQL- Initiate Process"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Truncate Stage Tables" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{DA1BC020-A6B0-42DB-A8C1-586742460FE6}"
+      DTS:EventID="732136300"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{446671EE-B3A9-4613-AF79-E7B9CF304FA7}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL - Error Log"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6B43C73F-0587-4957-99F3-B95106FD0751}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Error Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="&#xA;Insert into [dmproc].[ErrorLog] (ControlID,BatchID,error_type_cd,error_number,error_message)&#xA;Select ControlID &#xA;     , ?&#xA;     , 'E'&#xA;     , ?&#xA;     , ?&#xA;From dmproc.AuditReference Where ETLPackage = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="2000" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="2000" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="293,42"
+          Id="Package\Load CashTransaction and CashReconcilation"
+          TopLeft="256.071432293678,164.082354022227" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\SQL - Conclude Process Completed"
+          TopLeft="115.142859137788,244.000002187841" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\SQL - Conclude Process Failed"
+          TopLeft="404.257146720497,241.000002187841" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\SQL- Initiate Process"
+          TopLeft="263.071432293678,9.78823543139393" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Truncate Stage Tables"
+          TopLeft="305,87" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="400.285716146839,129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.0823540222273"
+              Start="0,0"
+              End="0,27.5823540222273">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5823540222273" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="355.071432293678,206.082354022227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-118.42857315589,37.9176481656137"
+              Start="0,0"
+              End="-118.42857315589,30.4176481656137">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.2906198305326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.2906198305326"
+                    Point2="0,15.2906198305326"
+                    Point3="-4,15.2906198305326" />
+                  <mssgle:LineSegment
+                    End="-114.42857315589,15.2906198305326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114.42857315589,15.2906198305326"
+                    Point2="-118.42857315589,15.2906198305326"
+                    Point3="-118.42857315589,19.2906198305326" />
+                  <mssgle:LineSegment
+                    End="-118.42857315589,30.4176481656137" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="450.071432293678,206.082354022227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.6857144268191,34.9176481656137"
+              Start="0,0"
+              End="75.6857144268191,27.4176481656137">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.0808438631192" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.0808438631192"
+                    Point2="0,14.0808438631192"
+                    Point3="4,14.0808438631192" />
+                  <mssgle:LineSegment
+                    End="71.6857144268191,14.0808438631192" />
+                  <mssgle:CubicBezierSegment
+                    Point1="71.6857144268191,14.0808438631192"
+                    Point2="75.6857144268191,14.0808438631192"
+                    Point3="75.6857144268191,18.0808438631192" />
+                  <mssgle:LineSegment
+                    End="75.6857144268191,27.4176481656137" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="22.6015095571595,19.0808438631192,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="352.571432293678,51.7882354313939">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.428567706322,35.2117645686061"
+              Start="0,0"
+              End="45.428567706322,27.7117645686061">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.605882284303" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.605882284303"
+                    Point2="0,17.605882284303"
+                    Point3="4,17.605882284303" />
+                  <mssgle:LineSegment
+                    End="41.428567706322,17.605882284303" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41.428567706322,17.605882284303"
+                    Point2="45.428567706322,17.605882284303"
+                    Point3="45.428567706322,21.605882284303" />
+                  <mssgle:LineSegment
+                    End="45.428567706322,27.7117645686061" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="234,42"
+          Id="Package.EventHandlers[OnError]\SQL - Error Log"
+          TopLeft="286.4,116" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Load CashTransaction and CashReconcilation">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser 1"
+          TopLeft="330.5,209.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction"
+          TopLeft="35,311.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Load CashTransaction and CashReconcilation\CNT - Recon Source Count"
+          TopLeft="333.5,107.5" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction"
+          TopLeft="5.50000000000006,515.5" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Load CashTransaction and CashReconcilation\Get BatchID &amp; AddedByUser"
+          TopLeft="21.5,209.5" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation"
+          TopLeft="311,515.5" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count 1"
+          TopLeft="330.5,413.5" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Load CashTransaction and CashReconcilation\CNT - Insert  Count"
+          TopLeft="21.5000000000001,413.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation"
+          TopLeft="340,311.5" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Load CashTransaction and CashReconcilation\CNT - Cash Source Count"
+          TopLeft="28,107.5" />
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[Derived Column Output]"
+          TopLeft="128,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[Row Count Output 13]"
+          TopLeft="437,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[Row Count Output 12]"
+          TopLeft="437,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[Row Count Output 11]"
+          TopLeft="128,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[Row Count Output 1]"
+          TopLeft="128,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[Lookup No Match Output1]"
+          TopLeft="437,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,20.4453125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[Lookup No Match Output]"
+          TopLeft="128,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,20.4453125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[Derived Column Output1]"
+          TopLeft="437,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction"
+          TopLeft="29,7" />
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[OLE DB Source Output]"
+          TopLeft="143.5,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15.5,58.5"
+              Start="0,0"
+              End="-15.5,51">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.25"
+                    Point2="0,29.25"
+                    Point3="-4,29.25" />
+                  <mssgle:LineSegment
+                    End="-11.5,29.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.5,29.25"
+                    Point2="-15.5,29.25"
+                    Point3="-15.5,33.25" />
+                  <mssgle:LineSegment
+                    End="-15.5,51" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="236,42"
+          Id="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation"
+          TopLeft="327,7" />
+        <EdgeLayout
+          Id="Package\Load CashTransaction and CashReconcilation.Paths[OLE DB Source Output1]"
+          TopLeft="445,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8,58.5"
+              Start="0,0"
+              End="-8,51">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.25"
+                    Point2="0,29.25"
+                    Point3="-4,29.25" />
+                  <mssgle:LineSegment
+                    End="-4,29.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4,29.25"
+                    Point2="-8,29.25"
+                    Point3="-8,33.25" />
+                  <mssgle:LineSegment
+                    End="-8,51" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashReconcilation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashReconcilation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CashTransaction and CashReconcilation\LKP -Cash Reconcilation">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CashTransaction and CashReconcilation\OLE_DEST - Load CashTransaction">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CashTransaction and CashReconcilation\OLE_SRC - IT_CashTransaction">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CashTransaction and CashReconcilation\LKP -Cash Transaction">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

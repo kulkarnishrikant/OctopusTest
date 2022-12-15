@@ -1,0 +1,1313 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/17/2019 5:19:39 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VA1-TGMRAPP018"
+  DTS:CreatorName="MARKELCORP\hdanappanavar"
+  DTS:DTSID="{F0087CD1-3C06-469B-BB41-7F929CC4A8CE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="EDW_BC_ReportSchedule"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{B6993C2B-9858-44D1-B031-84F68581FE8B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E329EF29-7D58-4397-B5C3-2C3F87AA2F10}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DataLoadDir">
+      <DTS:VariableValue
+        DTS:DataType="8">\\va1-tcorapp394\imports\COLD\BillingCenter</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Check on the Frequency(Daily or Monthly)"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{74136342-A4AC-4101-8BF8-1015106965F9}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Check on the Frequency(Daily or Monthly)"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[$Project::Frequency]" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Daily Check Post Metadata"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4a71e3f4-616d-4917-8b01-a3745491a413}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Daily Check Post Metadata">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Daily Check Post Metadata\DailyMetadatfile"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="DailyMetadatfile">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Daily Check Post Metadata\DailyMetadatfile.Connections[FlatFileConnection]"
+                  connectionManagerID="{91CF5AE4-09D6-4A11-94AC-68F41BB5D548}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[FileSharePath]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Daily Check Post Metadata\DailyMetadatfile.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Daily Check Post Metadata\DailyMetadatfile.Inputs[Flat File Destination Input].Columns[Filename]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="Filename"
+                      externalMetadataColumnId="Package\Daily Check Post Metadata\DailyMetadatfile.Inputs[Flat File Destination Input].ExternalColumns[Filename]"
+                      lineageId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].Columns[Filename]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Daily Check Post Metadata\DailyMetadatfile.Inputs[Flat File Destination Input].ExternalColumns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Filename" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_DB For DailylMetadata"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Exec dbo.[USP_DailyPostMetadata]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].Columns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      length="8000"
+                      lineageId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].Columns[Filename]"
+                      name="Filename"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Filename" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      name="Filename" />
+                    <outputColumn
+                      refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Daily Check Post Metadata.Paths[OLE DB Source Output]"
+              endId="Package\Daily Check Post Metadata\DailyMetadatfile.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Daily Metadata"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BF53061B-7A5B-47A6-B1A9-091E19F7D434}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Daily Metadata">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Daily Metadata\DailyMetadatfile"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="DailyMetadatfile">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Daily Metadata\DailyMetadatfile.Connections[FlatFileConnection]"
+                  connectionManagerID="{91CF5AE4-09D6-4A11-94AC-68F41BB5D548}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[FileSharePath]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Daily Metadata\DailyMetadatfile.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Daily Metadata\DailyMetadatfile.Inputs[Flat File Destination Input].Columns[Filename]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="Filename"
+                      externalMetadataColumnId="Package\Daily Metadata\DailyMetadatfile.Inputs[Flat File Destination Input].ExternalColumns[Filename]"
+                      lineageId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].Columns[Filename]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Daily Metadata\DailyMetadatfile.Inputs[Flat File Destination Input].ExternalColumns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Filename" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Daily Metadata\OLE_DB For DailylMetadata"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_DB For DailylMetadata"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Exec dbo.[USP_DailyMetadata]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Daily Metadata\OLE_DB For DailylMetadata.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].Columns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      length="8000"
+                      lineageId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].Columns[Filename]"
+                      name="Filename"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Filename" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      name="Filename" />
+                    <outputColumn
+                      refId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Daily Metadata.Paths[OLE DB Source Output]"
+              endId="Package\Daily Metadata\DailyMetadatfile.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Daily Metadata\OLE_DB For DailylMetadata.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Monthly Metadata"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{350e5fb0-7e26-4524-868d-ce1099453bd1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Monthly Metadata">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Monthly Metadata\MonthlyMetadataFile"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="MonthlyMetadataFile">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Monthly Metadata\MonthlyMetadataFile.Connections[FlatFileConnection]"
+                  connectionManagerID="{91CF5AE4-09D6-4A11-94AC-68F41BB5D548}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[FileSharePath]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Monthly Metadata\MonthlyMetadataFile.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Monthly Metadata\MonthlyMetadataFile.Inputs[Flat File Destination Input].Columns[Filename]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="Filename"
+                      externalMetadataColumnId="Package\Monthly Metadata\MonthlyMetadataFile.Inputs[Flat File Destination Input].ExternalColumns[Filename]"
+                      lineageId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].Columns[Filename]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Monthly Metadata\MonthlyMetadataFile.Inputs[Flat File Destination Input].ExternalColumns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Filename" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_DB SRC for Monthly Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Exec dbo.[USP_MonthlyMetadata]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].Columns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      length="8000"
+                      lineageId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].Columns[Filename]"
+                      name="Filename"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Filename" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      name="Filename" />
+                    <outputColumn
+                      refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Monthly Metadata.Paths[OLE DB Source Output]"
+              endId="Package\Monthly Metadata\MonthlyMetadataFile.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Monthly Metadata\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Monthly Metadata for MSI"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{93f6761d-3baa-4a36-8527-c9437ffb927a}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Monthly Metadata for MSI">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Monthly Metadata for MSI\MonthlyMetadataFile"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="MonthlyMetadataFile">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Monthly Metadata for MSI\MonthlyMetadataFile.Connections[FlatFileConnection]"
+                  connectionManagerID="{91CF5AE4-09D6-4A11-94AC-68F41BB5D548}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[FileSharePath]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Monthly Metadata for MSI\MonthlyMetadataFile.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Monthly Metadata for MSI\MonthlyMetadataFile.Inputs[Flat File Destination Input].Columns[Filename]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="Filename"
+                      externalMetadataColumnId="Package\Monthly Metadata for MSI\MonthlyMetadataFile.Inputs[Flat File Destination Input].ExternalColumns[Filename]"
+                      lineageId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].Columns[Filename]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Monthly Metadata for MSI\MonthlyMetadataFile.Inputs[Flat File Destination Input].ExternalColumns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Filename" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_DB SRC for Monthly Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Exec dbo.[USP_MSI_MonthlyMetadata]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Connections[OleDbConnection]"
+                  connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].Columns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      length="8000"
+                      lineageId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].Columns[Filename]"
+                      name="Filename"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Filename" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      name="Filename" />
+                    <outputColumn
+                      refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Monthly Metadata for MSI.Paths[OLE DB Source Output]"
+              endId="Package\Monthly Metadata for MSI\MonthlyMetadataFile.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7F9B4B53-24F8-4E43-B6ED-F4CCD222AD1F}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::Frequency]==&quot;Daily&quot;"
+      DTS:From="Package\Check on the Frequency(Daily or Monthly)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Daily Metadata" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C57E8E83-F5D5-43EE-8994-D735898F30EE}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::Frequency]==&quot;Monthly&quot;"
+      DTS:From="Package\Check on the Frequency(Daily or Monthly)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Monthly Metadata" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8DC940A1-5B7F-479A-B3F6-C7CA17B83F9A}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::Frequency]==&quot;MSI&quot;"
+      DTS:From="Package\Check on the Frequency(Daily or Monthly)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Monthly Metadata for MSI" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{92E192A8-2069-4DA0-B79D-E4101760C5DE}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::Frequency]==&quot;DailyPost&quot;"
+      DTS:From="Package\Check on the Frequency(Daily or Monthly)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Daily Check Post Metadata" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="279,42"
+          Id="Package\Check on the Frequency(Daily or Monthly)"
+          TopLeft="317,36" />
+        <NodeLayout
+          Size="151,60"
+          Id="Package\Daily Metadata"
+          TopLeft="184.5,162.5" />
+        <NodeLayout
+          Size="165,60"
+          Id="Package\Monthly Metadata"
+          TopLeft="393.5,169.5" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Monthly Metadata for MSI"
+          TopLeft="626.5,184.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="411.333333333333,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-151.333333333333,84.5"
+              Start="0,0"
+              End="-151.333333333333,77">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.0890947968639" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.0890947968639"
+                    Point2="0,34.0890947968639"
+                    Point3="-4,34.0890947968639" />
+                  <mssgle:LineSegment
+                    End="-147.333333333333,34.0890947968639" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-147.333333333333,34.0890947968639"
+                    Point2="-151.333333333333,34.0890947968639"
+                    Point3="-151.333333333333,38.0890947968639" />
+                  <mssgle:LineSegment
+                    End="-151.333333333333,77" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-83.6666666666667,39.0890947968639,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="501.666666666667,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-25.6666666666666,91.5"
+              Start="0,0"
+              End="-25.6666666666666,84">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.9130434782609" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.9130434782609"
+                    Point2="0,36.9130434782609"
+                    Point3="-4,36.9130434782609" />
+                  <mssgle:LineSegment
+                    End="-21.6666666666666,36.9130434782609" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.6666666666666,36.9130434782609"
+                    Point2="-25.6666666666666,36.9130434782609"
+                    Point3="-25.6666666666666,40.9130434782609" />
+                  <mssgle:LineSegment
+                    End="-25.6666666666666,84" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-20.8333333333333,41.9130434782609,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="524.25,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="203.75,106.5"
+              Start="0,0"
+              End="203.75,99">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.1721893491124" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.1721893491124"
+                    Point2="0,36.1721893491124"
+                    Point3="4,36.1721893491124" />
+                  <mssgle:LineSegment
+                    End="199.75,36.1721893491124" />
+                  <mssgle:CubicBezierSegment
+                    Point1="199.75,36.1721893491124"
+                    Point2="203.75,36.1721893491124"
+                    Point3="203.75,40.1721893491124" />
+                  <mssgle:LineSegment
+                    End="203.75,99" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="93.875,41.1721893491124,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Frequecncy=D&#xA;"
+          ParentId="Package"
+          Size="102,53"
+          Id="405a891d-67be-4f3b-9dd9-10e012afbf55"
+          TopLeft="290,119">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Frequency=M"
+          ParentId="Package"
+          Size="200,39"
+          Id="ddf38470-5435-40df-861a-10cd124b4cce"
+          TopLeft="463,124">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Frequency=MSI Monthly"
+          ParentId="Package"
+          Size="150,39"
+          Id="3795d6fb-c1cb-4186-ac05-90d389c42652"
+          TopLeft="607,130">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Daily Check Post Metadata"
+          TopLeft="1.5,150.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="375.2,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-270.7,72.5"
+              Start="0,0"
+              End="-270.7,65">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3429438543247" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.3429438543247"
+                    Point2="0,21.3429438543247"
+                    Point3="-4,21.3429438543247" />
+                  <mssgle:LineSegment
+                    End="-266.7,21.3429438543247" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-266.7,21.3429438543247"
+                    Point2="-270.7,21.3429438543247"
+                    Point3="-270.7,25.3429438543247" />
+                  <mssgle:LineSegment
+                    End="-270.7,65" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-143.35,26.3429438543247,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Frequecncy=D&#xA;for Post Check Register"
+          ParentId="Package"
+          Size="144,53"
+          Id="77e1a404-8fe6-461f-a2ff-34859e014211"
+          TopLeft="112,92">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Daily Metadata">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Daily Metadata\OLE_DB For DailylMetadata"
+          TopLeft="128,53" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Daily Metadata\DailyMetadatfile"
+          TopLeft="116,167" />
+        <EdgeLayout
+          Id="Package\Daily Metadata.Paths[OLE DB Source Output]"
+          TopLeft="233,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-39,72"
+              Start="0,0"
+              End="-39,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="-4,36" />
+                  <mssgle:LineSegment
+                    End="-35,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-35,36"
+                    Point2="-39,36"
+                    Point3="-39,40" />
+                  <mssgle:LineSegment
+                    End="-39,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Daily Metadata\OLE_DB For DailylMetadata">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Monthly Metadata">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Monthly Metadata\OLE_DB SRC for Monthly Data"
+          TopLeft="128,53" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Monthly Metadata\MonthlyMetadataFile"
+          TopLeft="116,167" />
+        <EdgeLayout
+          Id="Package\Monthly Metadata.Paths[OLE DB Source Output]"
+          TopLeft="240,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-35,72"
+              Start="0,0"
+              End="-35,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="-4,36" />
+                  <mssgle:LineSegment
+                    End="-31,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31,36"
+                    Point2="-35,36"
+                    Point3="-35,40" />
+                  <mssgle:LineSegment
+                    End="-35,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Monthly Metadata\OLE_DB SRC for Monthly Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Monthly Metadata for MSI">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data"
+          TopLeft="128,53" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Monthly Metadata for MSI\MonthlyMetadataFile"
+          TopLeft="116,167" />
+        <EdgeLayout
+          Id="Package\Monthly Metadata for MSI.Paths[OLE DB Source Output]"
+          TopLeft="240,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-35,72"
+              Start="0,0"
+              End="-35,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="-4,36" />
+                  <mssgle:LineSegment
+                    End="-31,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31,36"
+                    Point2="-35,36"
+                    Point3="-35,40" />
+                  <mssgle:LineSegment
+                    End="-35,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Monthly Metadata for MSI\OLE_DB SRC for Monthly Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Daily Check Post Metadata">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Daily Check Post Metadata\DailyMetadatfile"
+          TopLeft="116,167" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata"
+          TopLeft="128,53" />
+        <EdgeLayout
+          Id="Package\Daily Check Post Metadata.Paths[OLE DB Source Output]"
+          TopLeft="233,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-39,72"
+              Start="0,0"
+              End="-39,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="-4,36" />
+                  <mssgle:LineSegment
+                    End="-35,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-35,36"
+                    Point2="-39,36"
+                    Point3="-39,40" />
+                  <mssgle:LineSegment
+                    End="-39,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Daily Check Post Metadata\OLE_DB For DailylMetadata">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

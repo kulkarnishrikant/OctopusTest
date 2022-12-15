@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="mAgency"
+  DTS:DTSID="{d0360a97-a9f4-4512-bdb9-d1e73dcbcdb9}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::mAgencyDatabase]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::mAgencyPassword]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::mAgencyServer]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="UserName">@[$Project::mAgencyUserId]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=VA1-PSPLSQL209\MAVERICK;User ID=ReportingHub;Initial Catalog=1stcomp;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+K0yLD6ZbE+3r92r3352bgAAAAACAAAAAAADZgAAwAAAABAAAACC4qLC50aKQbc8FvF9a50fAAAAAASAAACgAAAAEAAAAC7uWeuMzRpHg/MYezcPrROAAAAAi621sif+QCUUZ9N4ol/tFn1HuXHNNtiYUzZWVFdOUJLYYmaL6tLzBQuKlucXpnXzu7z0/Xzb1hk4OMo9+Qepipuc8C33rqM7VxEjWhZ+6jWi78FZtuznoQTpfMvlAcR1DXJD3ptA+qgv5Zr3lQd+k3QfEeQjFt4SfBbdp7JBWJwUAAAA5BZesjsqYg2bnAiB5WrL8dSYwUU=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

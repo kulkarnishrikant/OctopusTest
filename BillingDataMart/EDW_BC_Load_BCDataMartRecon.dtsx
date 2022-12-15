@@ -1,0 +1,3178 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/3/2015 2:53:10 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MM643VAMUDW7"
+  DTS:CreatorName="MMI\t159079"
+  DTS:DTSID="{06405D4C-9E36-41D4-8176-2DD93A474EE0}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="EDW_BC_Load_BCDataMartRecon"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="138"
+  DTS:VersionGUID="{90244E74-20A5-440E-A9E2-1DCDB29F9D0F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="BatchID"
+      DTS:ConfigurationVariable="\Package.Variables[User::BatchID].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{8E8CAED0-6387-4144-BD76-96CE3FB34C88}"
+      DTS:ObjectName="ConfigBatchID" />
+    <DTS:Configuration
+      DTS:ConfigurationString="IncrementDays"
+      DTS:ConfigurationVariable="\Package.Variables[User::IncrementDays].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{C5BA6B70-0490-4F01-B1B3-BC37C14B3EAF}"
+      DTS:ObjectName="ConfigIncrementDays" />
+  </DTS:Configurations>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{AD1D0C79-33F7-46BE-86A0-DECB443523BB}"
+      DTS:ObjectName="SMTPConn">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">SmtpServer=smtp.markelcorp.com;UseWindowsAuthentication=True;EnableSsl=False;</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{453355B1-F798-4B05-808B-7DC641323EE3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3F30A962-CBBF-4344-B3A5-523E133A786B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="InsertCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A2798654-4FC1-45A6-8DF8-D056116EB1A2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Notification">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3AA2983B-F8B0-4E16-BB13-28906654BFA1}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F50D1BB3-A4C3-46F0-93C9-F0C4885E0C72}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UnChangeCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7E34FB07-4FEF-4850-B375-870AD2398E6F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UpdateCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EST_GetTotalCounts_Notify"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B33BB4CE-0346-473B-A52D-68259F77099D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_GetTotalCounts_Notify"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="Exec Usp_Gettotalcount"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Notification" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{E7CF84FD-05F8-47C9-A87B-E6E6A360E12F}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{0968D574-491A-4651-82F3-255DDC5F11CD}"
+          SendMailTask:From="donotreply@markelcorp.com"
+          SendMailTask:To="DLMKLBillingandCollectionsBusinessProcess@markel.com;DLMKLBillingCenterTier3SupportUsers@markel.com"
+          SendMailTask:Subject="BillingCenter To BillingDataMart Recon Report-VA1-PGMRSQL005"
+          SendMailTask:MessageSourceType="Variable"
+          SendMailTask:MessageSource="User::Notification" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C474B3EC-BE56-4849-B6E9-AFC35759BD8F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\DFT - Load BCDataMartRecon"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{C151FB9D-2551-4386-95AA-C65D0E9705B0}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT - Load BCDataMartRecon"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Sequence Container\DFT - Load BCDataMartRecon.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{CDB86542-B631-4E33-B03E-91B86B0ACB65}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{F017F703-7A4F-49CF-9B42-1C46CF290421}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                  name="BC DM"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Inputs[Sort Input].Columns[TransactionDate]"
+                          cachedDataType="dbDate"
+                          cachedName="TransactionDate"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TransactionDate]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Inputs[Sort Input].Columns[TAccountName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="TAccountName"
+                          cachedSortKeyPosition="2"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TAccountName]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Inputs[Sort Input].Columns[TransactionType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="TransactionType"
+                          cachedSortKeyPosition="3"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TransactionType]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">3</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Inputs[Sort Input].Columns[Currency]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="64"
+                          cachedName="Currency"
+                          cachedSortKeyPosition="4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[Currency]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">4</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Inputs[Sort Input].Columns[DataMartRecordCount]"
+                          cachedDataType="i4"
+                          cachedName="DataMartRecordCount"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[DataMartRecordCount]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Inputs[Sort Input].Columns[DataMartTransactionTotal]"
+                          cachedDataType="cy"
+                          cachedName="DataMartTransactionTotal"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[DataMartTransactionTotal]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TransactionDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TransactionDate]"
+                          name="TransactionDate"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TransactionDate]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TAccountName]"
+                          name="TAccountName"
+                          sortKeyPosition="2">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TAccountName]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TransactionType]"
+                          name="TransactionType"
+                          sortKeyPosition="3">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TransactionType]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[Currency]"
+                          name="Currency"
+                          sortKeyPosition="4">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[Currency]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[DataMartRecordCount]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[DataMartRecordCount]"
+                          name="DataMartRecordCount">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[DataMartRecordCount]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[DataMartTransactionTotal]"
+                          dataType="cy"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[DataMartTransactionTotal]"
+                          name="DataMartTransactionTotal">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[DataMartTransactionTotal]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                  name="BC_RPT"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Inputs[Sort Input].Columns[TransactionDate]"
+                          cachedDataType="dbDate"
+                          cachedName="TransactionDate"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TransactionDate]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Inputs[Sort Input].Columns[TAccountName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="512"
+                          cachedName="TAccountName"
+                          cachedSortKeyPosition="2"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TAccountName]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Inputs[Sort Input].Columns[TransactionType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TransactionType"
+                          cachedSortKeyPosition="3"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TransactionType]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">3</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Inputs[Sort Input].Columns[Currency]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="256"
+                          cachedName="Currency"
+                          cachedSortKeyPosition="4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[Currency]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">4</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Inputs[Sort Input].Columns[BCRecordCount]"
+                          cachedDataType="i4"
+                          cachedName="BCRecordCount"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[BCRecordCount]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Inputs[Sort Input].Columns[BCTransactionTotal]"
+                          cachedDataType="numeric"
+                          cachedName="BCTransactionTotal"
+                          cachedPrecision="38"
+                          cachedScale="2"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[BCTransactionTotal]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TransactionDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TransactionDate]"
+                          name="TransactionDate"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TransactionDate]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="512"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TAccountName]"
+                          name="TAccountName"
+                          sortKeyPosition="2">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TAccountName]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TransactionType]"
+                          name="TransactionType"
+                          sortKeyPosition="3">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TransactionType]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[Currency]"
+                          name="Currency"
+                          sortKeyPosition="4">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[Currency]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[BCRecordCount]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[BCRecordCount]"
+                          name="BCRecordCount">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[BCRecordCount]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[BCTransactionTotal]"
+                          dataType="numeric"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[BCTransactionTotal]"
+                          name="BCTransactionTotal"
+                          precision="38"
+                          scale="2">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[BCTransactionTotal]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Insert  Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="CNT - Insert  Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::InsertCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Insert  Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Insert  Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Insert  Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Source Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="CNT - Source Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::SourceCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Source Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Source Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Source Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="DRV - BatchID &amp; Legacy"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output].Columns[BatchID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output].Columns[BatchID]"
+                          name="BatchID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::BatchID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::BatchID]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join"
+                  componentClassID="Microsoft.MergeJoin"
+                  contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+                  name="Merge Join"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of join to perform."
+                      name="JoinType"
+                      typeConverter="JoinType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the number of columns in the ordering key."
+                      name="NumKeyColumns">4</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the null values are treated as equal values."
+                      name="TreatNullsAsEqual">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indicates the requested maximum buffers per input before blocking."
+                      name="MaxBuffersPerInput">5</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Left Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[TransactionDate]"
+                          cachedDataType="dbDate"
+                          cachedName="TransactionDate"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TransactionDate]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[TAccountName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="512"
+                          cachedName="TAccountName"
+                          cachedSortKeyPosition="2"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TAccountName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[TransactionType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TransactionType"
+                          cachedSortKeyPosition="3"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[TransactionType]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[Currency]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="256"
+                          cachedName="Currency"
+                          cachedSortKeyPosition="4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[Currency]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[BCRecordCount]"
+                          cachedDataType="i4"
+                          cachedName="BCRecordCount"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[BCRecordCount]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[BCTransactionTotal]"
+                          cachedDataType="numeric"
+                          cachedName="BCTransactionTotal"
+                          cachedPrecision="38"
+                          cachedScale="2"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output].Columns[BCTransactionTotal]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Right Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[TransactionDate]"
+                          cachedDataType="dbDate"
+                          cachedName="TransactionDate"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TransactionDate]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[TAccountName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="TAccountName"
+                          cachedSortKeyPosition="2"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TAccountName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[TransactionType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="TransactionType"
+                          cachedSortKeyPosition="3"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[TransactionType]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[Currency]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="64"
+                          cachedName="Currency"
+                          cachedSortKeyPosition="4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[Currency]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[DataMartRecordCount]"
+                          cachedDataType="i4"
+                          cachedName="DataMartRecordCount"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[DataMartRecordCount]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[DataMartTransactionTotal]"
+                          cachedDataType="cy"
+                          cachedName="DataMartTransactionTotal"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output].Columns[DataMartTransactionTotal]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output]"
+                      isSorted="true"
+                      name="Merge Join Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionDate]"
+                          name="TransactionDate"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[TransactionDate]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="512"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TAccountName]"
+                          name="TAccountName"
+                          sortKeyPosition="2">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[TAccountName]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionType]"
+                          name="TransactionType"
+                          sortKeyPosition="3">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[TransactionType]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[Currency]"
+                          name="Currency"
+                          sortKeyPosition="4">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[Currency]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[BCRecordCount]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[BCRecordCount]"
+                          name="BCRecordCount">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[BCRecordCount]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[BCTransactionTotal]"
+                          dataType="numeric"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[BCTransactionTotal]"
+                          name="BCTransactionTotal"
+                          precision="38"
+                          scale="2">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input].Columns[BCTransactionTotal]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[DataMartRecordCount]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[DataMartRecordCount]"
+                          name="DataMartRecordCount">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[DataMartRecordCount]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[DataMartTransactionTotal]"
+                          dataType="cy"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[DataMartTransactionTotal]"
+                          name="DataMartTransactionTotal">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[DataMartTransactionTotal]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionDate (1)]"
+                          dataType="dbDate"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionDate (1)]"
+                          name="TransactionDate (1)">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[TransactionDate]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TAccountName (1)]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TAccountName (1)]"
+                          name="TAccountName (1)">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[TAccountName]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionType (1)]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionType (1)]"
+                          name="TransactionType (1)">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[TransactionType]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[Currency (1)]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[Currency (1)]"
+                          name="Currency (1)">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input].Columns[Currency]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE_DEST - Load -stage-BCDataMartRecon"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[stage].[BCDataMartRecon]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">ROWS_PER_BATCH = 10000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">10000</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Connections[OleDbConnection]"
+                      connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].Columns[TransactionDate]"
+                          cachedDataType="dbDate"
+                          cachedName="TransactionDate"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[TransactionDate]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionDate]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].Columns[TAccountName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="512"
+                          cachedName="TAccountName"
+                          cachedSortKeyPosition="2"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[TAccountName]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TAccountName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].Columns[TransactionType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TransactionType"
+                          cachedSortKeyPosition="3"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[TransactionType]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[TransactionType]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].Columns[Currency]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="256"
+                          cachedName="Currency"
+                          cachedSortKeyPosition="4"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[Currency]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[Currency]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].Columns[BCRecordCount]"
+                          cachedDataType="i4"
+                          cachedName="BCRecordCount"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[BCRecordCount]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[BCRecordCount]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].Columns[BCTransactionTotal]"
+                          cachedDataType="numeric"
+                          cachedName="BCTransactionTotal"
+                          cachedPrecision="38"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[BCTransactionTotal]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[BCTransactionTotal]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].Columns[DataMartRecordCount]"
+                          cachedDataType="i4"
+                          cachedName="DataMartRecordCount"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[DataMartRecordCount]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[DataMartRecordCount]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].Columns[DataMartTransactionTotal]"
+                          cachedDataType="cy"
+                          cachedName="DataMartTransactionTotal"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[DataMartTransactionTotal]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output].Columns[DataMartTransactionTotal]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[BCDataMartReconID]"
+                          dataType="i4"
+                          name="BCDataMartReconID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[TransactionDate]"
+                          dataType="dbDate"
+                          name="TransactionDate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="TAccountName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="TransactionType" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Currency" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[BCRecordCount]"
+                          dataType="i4"
+                          name="BCRecordCount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[BCTransactionTotal]"
+                          dataType="cy"
+                          name="BCTransactionTotal" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[DataMartRecordCount]"
+                          dataType="i4"
+                          name="DataMartRecordCount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[DataMartTransactionTotal]"
+                          dataType="cy"
+                          name="DataMartTransactionTotal" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[TransactionCountDifference]"
+                          dataType="i4"
+                          name="TransactionCountDifference" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input].ExternalColumns[TransactionAmountDifference]"
+                          dataType="cy"
+                          name="TransactionAmountDifference" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE_SRC - BC DM"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT	CAST(DBT.TransactionDate AS DATE) AS TransactionDate,
+		DBT.TAccountName,
+		DBT.TransactionTypeCode AS TransactionType,
+		FBT.Currency,
+		COUNT(TransactionTypeCode) AS DataMartRecordCount,
+		SUM(DBT.TransactionAmount) AS DataMartTransactionTotal
+--Trouble shooting fields not to be a part of the report
+		--,FBT.GWRowNumber,
+		--DBT.TAccountOwner,
+		--DBT.TAccountPatternType,
+		--DBT.TAccountSubType,
+		--DBT.TransactionType
+--Trouble shooting fields not to be a part of the report
+		
+FROM [BillingDataMart].[dbo].[FactBillingTransaction] FBT
+	INNER JOIN DimBillingTransaction DBT
+		ON FBT.FactBillingTransactionID = DBT.BillingTransactionID
+        ---WHERE CAST(DBT.TransactionDate AS DATE)&gt;=?
+GROUP BY 
+		CAST(DBT.TransactionDate AS DATE),
+		DBT.TAccountName,
+		DBT.TransactionTypeCode,
+		FBT.Currency
+--ORDER BY CAST(DBT.TransactionDate AS DATE) DESC</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{77E383CE-2DF9-4976-AC96-5670D8D3D917};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Connections[OleDbConnection]"
+                      connectionManagerID="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[EnterpriseDataWarehouse]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TransactionDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[TransactionDate]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TransactionDate]"
+                          name="TransactionDate"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[TAccountName]"
+                          length="100"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TAccountName]"
+                          name="TAccountName"
+                          sortKeyPosition="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[TransactionType]"
+                          length="100"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[TransactionType]"
+                          name="TransactionType"
+                          sortKeyPosition="3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[Currency]"
+                          length="64"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[Currency]"
+                          name="Currency"
+                          sortKeyPosition="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[DataMartRecordCount]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[DataMartRecordCount]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[DataMartRecordCount]"
+                          name="DataMartRecordCount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[DataMartTransactionTotal]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[DataMartTransactionTotal]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].Columns[DataMartTransactionTotal]"
+                          name="DataMartTransactionTotal"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[TransactionDate]"
+                          dataType="dbDate"
+                          name="TransactionDate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="TAccountName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="TransactionType" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          name="Currency" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[DataMartRecordCount]"
+                          dataType="i4"
+                          name="DataMartRecordCount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output].ExternalColumns[DataMartTransactionTotal]"
+                          dataType="cy"
+                          name="DataMartTransactionTotal" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[TransactionDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[TransactionDate]"
+                          name="TransactionDate" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[TAccountName]"
+                          name="TAccountName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[TransactionType]"
+                          name="TransactionType" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[Currency]"
+                          name="Currency" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[DataMartRecordCount]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[DataMartRecordCount]"
+                          name="DataMartRecordCount" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[DataMartTransactionTotal]"
+                          dataType="cy"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[DataMartTransactionTotal]"
+                          name="DataMartTransactionTotal" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE_SRC - BCRpt"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT	
+		CAST(TRN.TransactionDate AS DATE) AS TransactionDate,
+		RTRIM(TAP.TAccountName+' '+ ISNULL(TAS.NAME,'')) AS TAccountName,
+		TRNL.TYPECODE AS TransactionType,
+		CURL.NAME AS Currency,
+		COUNT(TRNL.TYPECODE) AS BCRecordCount,
+		SUM(TRN.AMOUNT) AS BCTransactionTotal
+--Trouble shooting fields not to be a part of the report
+		--,LIT.ID,
+		--TAP.Subtype,  -- Will need joining to corresponding bctl table
+		--TAC.SubType,  -- Will need joining to corresponding bctl table
+		--TRNL.Name
+--Trouble shooting fields not to be a part of the report
+
+FROM [dbo].[bc_transaction] TRN
+	LEFT JOIN dbo.bctl_transaction TRNL
+		ON TRN.Subtype = TRNL.ID
+	LEFT JOIN dbo.bctl_currency CURL
+		ON TRN.Currency = CURL.ID
+	LEFT JOIN dbo.bc_lineitem LIT
+		ON TRN.ID = LIT.TransactionID
+	LEFT JOIN dbo.bc_taccount TAC
+		ON LIT.TAccountID = TAC.ID
+	LEFT JOIN dbo.bc_TAccountPattern TAP
+		ON TAC.TAccountPatternID = TAP.ID
+	LEFT JOIN dbo.bctl_taccountpatternsuffix TAS
+		ON TAS.ID = TAP.Suffix
+		---where CAST(TRN.TransactionDate AS DATE)&gt;=?
+GROUP BY 
+		CAST(TRN.TransactionDate AS DATE),
+		TRNL.TYPECODE,
+		TRN.Currency,
+		CURL.NAME,
+		TAP.TAccountName,
+		TAS.NAME
+--ORDER BY CAST(TRN.TransactionDate AS DATE) DESC</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{77E383CE-2DF9-4976-AC96-5670D8D3D917};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Connections[OleDbConnection]"
+                      connectionManagerID="{EA62C0E7-CF0B-42BD-8840-CCEC8B17E6B2}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[GWStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TransactionDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[TransactionDate]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TransactionDate]"
+                          name="TransactionDate"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[TAccountName]"
+                          length="512"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TAccountName]"
+                          name="TAccountName"
+                          sortKeyPosition="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[TransactionType]"
+                          length="50"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[TransactionType]"
+                          name="TransactionType"
+                          sortKeyPosition="3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[Currency]"
+                          length="256"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[Currency]"
+                          name="Currency"
+                          sortKeyPosition="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[BCRecordCount]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[BCRecordCount]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[BCRecordCount]"
+                          name="BCRecordCount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[BCTransactionTotal]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[BCTransactionTotal]"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].Columns[BCTransactionTotal]"
+                          name="BCTransactionTotal"
+                          precision="38"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[TransactionDate]"
+                          dataType="dbDate"
+                          name="TransactionDate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="512"
+                          name="TAccountName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TransactionType" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="Currency" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[BCRecordCount]"
+                          dataType="i4"
+                          name="BCRecordCount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output].ExternalColumns[BCTransactionTotal]"
+                          dataType="numeric"
+                          name="BCTransactionTotal"
+                          precision="38"
+                          scale="2" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[TransactionDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[TransactionDate]"
+                          name="TransactionDate" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[TAccountName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="512"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[TAccountName]"
+                          name="TAccountName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[TransactionType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[TransactionType]"
+                          name="TransactionType" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[Currency]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[Currency]"
+                          name="Currency" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[BCRecordCount]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[BCRecordCount]"
+                          name="BCRecordCount" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[BCTransactionTotal]"
+                          dataType="numeric"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[BCTransactionTotal]"
+                          name="BCTransactionTotal"
+                          precision="38"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Insert  Count.Inputs[Row Count Input 1]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Merge Join Output]"
+                  endId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Source Count.Inputs[Row Count Input 1]"
+                  name="Merge Join Output"
+                  startId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Outputs[Merge Join Output]" />
+                <path
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Inputs[Sort Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[OLE DB Source Output1]"
+                  endId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Inputs[Sort Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Row Count Output 1]"
+                  endId="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy.Inputs[Derived Column Input]"
+                  name="Row Count Output 1"
+                  startId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Source Count.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Row Count Output 11]"
+                  endId="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon.Inputs[OLE DB Destination Input]"
+                  name="Row Count Output 1"
+                  startId="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Insert  Count.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Sort Output]"
+                  endId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Right Input]"
+                  name="Sort Output"
+                  startId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM.Outputs[Sort Output]" />
+                <path
+                  refId="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Sort Output1]"
+                  endId="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join.Inputs[Merge Join Left Input]"
+                  name="Sort Output"
+                  startId="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT.Outputs[Sort Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Execute USP_BCDataMartRecon"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{04E0956C-5C8D-4D97-B24E-73919B0D2A86}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute USP_BCDataMartRecon"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="EXEC USP_BCDataMartRecon" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\SQL - Conclude Process Completed"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BC275893-9107-4F28-8A85-70D20AD813A6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Conclude Process Completed"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="Update dmproc.Audit&#xA;Set Status = 'Completed'&#xA;  , CompletedInd = 1&#xA;  , ConcludeDtm = Getdate()&#xA;  , SourceCount = ?&#xA;  , InsertCount = ?&#xA;  , UpdateCount = ?&#xA;  , UnChangeCount = ?&#xA;Where ControlID = (Select ControlID From dmproc.AuditReference Where ETLPackage = ?)&#xA;and BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::SourceCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::InsertCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::UpdateCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::UnChangeCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="200" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\SQL - Conclude Process Failed"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EDEDBE02-8BC3-4E98-A2F9-64EA4AF8215F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Conclude Process Failed"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Sequence Container\SQL - Conclude Process Failed.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{632BF791-9AE8-44EC-A43E-69FA58F19559}"
+              DTS:EventID="571707532"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{BB961D6E-D99A-49F3-9BA4-6C0447658FEA}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="Update dmproc.Audit&#xA;Set Status = 'Failed'&#xA;  , CompletedInd = 0&#xA;  , ConcludeDtm = Getdate()&#xA;  , SourceCount = ?&#xA;  , InsertCount = ?&#xA;  , UpdateCount = ?&#xA;  , UnChangeCount = ?&#xA;Where ControlID = (Select ControlID From dmproc.AuditReference Where ETLPackage = ?)&#xA;and BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::SourceCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::InsertCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::UpdateCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::UnChangeCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\SQL- Initiate Process"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C9FC89ED-A889-42BA-B4A1-A31CD6042D7B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL- Initiate Process"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="Insert into dmproc.Audit  (ControlID,BatchID,Status,InitiateDtm)&#xA;Select ControlID,?,'Started',Getdate()&#xA;From dmproc.AuditReference&#xA;Where ETLPackage = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Truncate BCDataMartRecon"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{912A29A4-DA50-4C50-BDF8-3A71944E3352}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate BCDataMartRecon"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="truncate table [BillingDataMart].[dbo].[BCDataMartRecon]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Truncate stage-BCDataMartRecon"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E23CDC0F-499E-4025-8D2E-7BCA797FF329}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate stage-BCDataMartRecon"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [stage].[BCDataMartRecon]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6BE3D404-C734-4202-B3EE-275FC1BE02ED}"
+          DTS:From="Package\Sequence Container\DFT - Load BCDataMartRecon"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Truncate BCDataMartRecon" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{58869623-2405-414F-B3F9-714690784A7B}"
+          DTS:From="Package\Sequence Container\SQL- Initiate Process"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sequence Container\Truncate stage-BCDataMartRecon" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{8B1D24CC-4A06-4F0F-953E-38B841D27AC8}"
+          DTS:From="Package\Sequence Container\Execute USP_BCDataMartRecon"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Sequence Container\SQL - Conclude Process Completed" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{201E9BC2-0784-4773-86D5-8950E48A5F96}"
+          DTS:From="Package\Sequence Container\Truncate stage-BCDataMartRecon"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Sequence Container\DFT - Load BCDataMartRecon" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{966D0B73-67B2-4D38-9761-E4E22CAE1DE5}"
+          DTS:From="Package\Sequence Container\Truncate BCDataMartRecon"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Sequence Container\Execute USP_BCDataMartRecon" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{B2E03E6B-E272-4F79-BBA8-7F436EF67832}"
+          DTS:From="Package\Sequence Container\Execute USP_BCDataMartRecon"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Sequence Container\SQL - Conclude Process Failed"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL -  Conclude BatchID Completed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{893d3060-eef6-4879-bf01-87653625ba7c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL -  Conclude BatchID Completed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="UPDATE Dmproc.BatchIdentifier&#xA;SET EndDate = getdate()&#xA;     , Status = 'Completed'&#xA;WHERE BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL -  Conclude BatchID Failed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8162f2b5-745b-4773-96af-2ee0bb9c9df0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL -  Conclude BatchID Failed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="UPDATE Dmproc.BatchIdentifier&#xA;SET EndDate = getdate()&#xA;     , Status = 'Failed'&#xA;WHERE BatchID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Get BatchID"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b42b9291-140d-470a-bdce-c549219abdf6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Get BatchID"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="SELECT MAX(BatchID) AS BatchID &#xA;FROM dmproc.BatchIdentifier &#xA;WHERE LOB = 'EDW-BC_DM'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="BatchID"
+            SQLTask:DtsVariableName="User::BatchID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Set BatchID"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8d2440d4-ecb3-41cf-88e4-3f6ff96c9b00}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Set BatchID"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+          SQLTask:SqlStatementSource="INSERT INTO dmproc.BatchIdentifier (ETLPackage,LOB,Status) VALUES (?,'EDW-BC_DM','Started')&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CE027A70-C71E-467F-AF5B-0555F6E753C6}"
+      DTS:From="Package\SQL - Get BatchID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Sequence Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E59F27D0-588E-4F14-BB9C-4C6A89706DBB}"
+      DTS:From="Package\Sequence Container"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL -  Conclude BatchID Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{9D991669-01FA-4959-B0BF-D1D41C2123C9}"
+      DTS:From="Package\Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\EST_GetTotalCounts_Notify" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{483E6B21-C75A-4F33-8796-B95DC815560A}"
+      DTS:From="Package\SQL - Set BatchID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL - Get BatchID" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{07849839-A6B3-4AC4-80C8-58443E34A56D}"
+      DTS:From="Package\SQL - Get BatchID"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL -  Conclude BatchID Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{75338421-5ED1-4F4C-BEBE-10E49F365E60}"
+      DTS:From="Package\EST_GetTotalCounts_Notify"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Send Mail Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{A634A742-601F-4868-9633-F0723C51E718}"
+      DTS:From="Package\Send Mail Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\SQL -  Conclude BatchID Completed" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{891BABFF-7869-4EE3-9A7E-B298ECCC1D3D}"
+      DTS:EventID="732118828"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{B19297E1-8BB6-4B3A-B1DB-9267CC04CCCC}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL - Error Log"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DB63058F-23FE-41CE-8293-48AA40247F5C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Error Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C5787262-38A2-4EB1-85E8-3A7FFBC44CAF}"
+              SQLTask:SqlStatementSource="&#xA;Insert into [dmproc].[ErrorLog] (ControlID,BatchID,error_type_cd,error_number,error_message)&#xA;Select ControlID &#xA;     , ?&#xA;     , 'E'&#xA;     , ?&#xA;     , ?&#xA;From dmproc.AuditReference Where ETLPackage = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="2000" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="2000" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="211,42"
+          Id="Package\EST_GetTotalCounts_Notify"
+          TopLeft="899.944444444444,205.611111111111" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Send Mail Task"
+          TopLeft="960,316.666666666667" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon"
+          TopLeft="117.614284483267,151.596078234038" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Sequence Container\Execute USP_BCDataMartRecon"
+          TopLeft="119,273" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\Sequence Container\SQL - Conclude Process Completed"
+          TopLeft="12,343.398041523645" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Sequence Container\SQL - Conclude Process Failed"
+          TopLeft="262.404765661071,350.356864804243" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Sequence Container\SQL- Initiate Process"
+          TopLeft="133.614284483267,5.5" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Sequence Container\Truncate BCDataMartRecon"
+          TopLeft="134,213" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Sequence Container\Truncate stage-BCDataMartRecon"
+          TopLeft="114.166666666667,72.8333333333333" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="117.614284483267,172.596078234038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.385715516733,61.403921765962"
+              Start="0,0"
+              End="8.885715516733,61.403921765962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,57.403921765962" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,57.403921765962"
+                    Point2="-22.5,61.403921765962"
+                    Point3="-18.5,61.403921765962" />
+                  <mssgle:LineSegment
+                    End="8.885715516733,61.403921765962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="223.114284483267,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.0523821833996,25.3333333333333"
+              Start="0,0"
+              End="11.0523821833996,17.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.66666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.66666666666667"
+                    Point2="0,12.6666666666667"
+                    Point3="4,12.6666666666667" />
+                  <mssgle:LineSegment
+                    End="7.05238218339963,12.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.05238218339963,12.6666666666667"
+                    Point2="11.0523821833996,12.6666666666667"
+                    Point3="11.0523821833996,16.6666666666667" />
+                  <mssgle:LineSegment
+                    End="11.0523821833996,17.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="197.333333333333,315">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-62.3333333333333,28.3980415236445"
+              Start="0,0"
+              End="-62.3333333333333,20.8980415236445">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.47642262778411" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.47642262778411"
+                    Point2="0,11.4764226277841"
+                    Point3="-4,11.4764226277841" />
+                  <mssgle:LineSegment
+                    End="-58.3333333333333,11.4764226277841" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-58.3333333333333,11.4764226277841"
+                    Point2="-62.3333333333333,11.4764226277841"
+                    Point3="-62.3333333333333,15.4764226277841" />
+                  <mssgle:LineSegment
+                    End="-62.3333333333333,20.8980415236445" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="231.140475574967,114.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.7627449007047"
+              Start="0,0"
+              End="0,29.2627449007047">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.2627449007047" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
+          TopLeft="345,234">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="5,60"
+              Start="0,0"
+              End="12.5,60">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="23.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.5,0"
+                    Point2="27.5,0"
+                    Point3="27.5,4" />
+                  <mssgle:LineSegment
+                    End="27.5,56" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.5,56"
+                    Point2="27.5,60"
+                    Point3="23.5,60" />
+                  <mssgle:LineSegment
+                    End="12.5,60" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 5]"
+          TopLeft="271.666666666667,315">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86.2380989944046,35.3568648042425"
+              Start="0,0"
+              End="86.2380989944046,27.8568648042425">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.2886727927721" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.2886727927721"
+                    Point2="0,14.2886727927721"
+                    Point3="4,14.2886727927721" />
+                  <mssgle:LineSegment
+                    End="82.2380989944046,14.2886727927721" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82.2380989944046,14.2886727927721"
+                    Point2="86.2380989944046,14.2886727927721"
+                    Point3="86.2380989944046,18.2886727927721" />
+                  <mssgle:LineSegment
+                    End="86.2380989944046,27.8568648042425" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="27.8777018409523,19.2886727927721,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="486,447"
+          Size="486,490"
+          Id="Package\Sequence Container"
+          TopLeft="362.666666666667,28.9444444444445" />
+        <NodeLayout
+          Size="251,42"
+          Id="Package\SQL -  Conclude BatchID Completed"
+          TopLeft="885.555555555556,446.666666666667" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\SQL -  Conclude BatchID Failed"
+          TopLeft="128,335.611111111111" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\SQL - Get BatchID"
+          TopLeft="140.666666666667,193.888888888888" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQL - Set BatchID"
+          TopLeft="153,87.7777777777778" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="301.666666666667,214.888888888888">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61,-21.2777777777768"
+              Start="0,0"
+              End="53.5,-21.2777777777768">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.4808787632221,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.4808787632221,0"
+                    Point2="36.4808787632221,0"
+                    Point3="36.4808787632221,-4" />
+                  <mssgle:LineSegment
+                    End="36.4808787632221,-17.2777777777768" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.4808787632221,-17.2777777777768"
+                    Point2="36.4808787632221,-21.2777777777768"
+                    Point3="40.4808787632221,-21.2777777777768" />
+                  <mssgle:LineSegment
+                    End="53.5,-21.2777777777768" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="362.666666666667,355.444444444444">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63.666666666667,0"
+              Start="0,0"
+              End="-56.166666666667,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-56.166666666667,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-43.3246809895835,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="848.666666666667,273.944444444445">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.277777777777,-47.3333333333335"
+              Start="0,0"
+              End="43.777777777777,-47.3333333333335">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="21.6388888888885,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.6388888888885,0"
+                    Point2="25.6388888888885,0"
+                    Point3="25.6388888888885,-4" />
+                  <mssgle:LineSegment
+                    End="25.6388888888885,-43.3333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.6388888888885,-43.3333333333335"
+                    Point2="25.6388888888885,-47.3333333333335"
+                    Point3="29.6388888888885,-47.3333333333335" />
+                  <mssgle:LineSegment
+                    End="43.777777777777,-47.3333333333335" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="236,129.777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.833333333333,64.1111111111102"
+              Start="0,0"
+              End="-14.833333333333,56.6111111111102">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0555555555551" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.0555555555551"
+                    Point2="0,32.0555555555551"
+                    Point3="-4,32.0555555555551" />
+                  <mssgle:LineSegment
+                    End="-10.833333333333,32.0555555555551" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.833333333333,32.0555555555551"
+                    Point2="-14.833333333333,32.0555555555551"
+                    Point3="-14.833333333333,36.0555555555551" />
+                  <mssgle:LineSegment
+                    End="-14.833333333333,56.6111111111102" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="217.333333333333,235.888888888888">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,99.7222222222227"
+              Start="0,0"
+              End="0,92.2222222222227">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.2222222222227" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,41.2365993923613,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="1005.44444444444,247.611111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.555555555556,69.055555555556"
+              Start="0,0"
+              End="30.555555555556,61.555555555556">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.527777777778" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.527777777778"
+                    Point2="0,34.527777777778"
+                    Point3="4,34.527777777778" />
+                  <mssgle:LineSegment
+                    End="26.555555555556,34.527777777778" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.555555555556,34.527777777778"
+                    Point2="30.555555555556,34.527777777778"
+                    Point3="30.555555555556,38.527777777778" />
+                  <mssgle:LineSegment
+                    End="30.555555555556,61.555555555556" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="1036,358.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.944444444444,88"
+              Start="0,0"
+              End="-24.944444444444,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40"
+                    Point2="0,44"
+                    Point3="-4,44" />
+                  <mssgle:LineSegment
+                    End="-20.944444444444,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.944444444444,44"
+                    Point2="-24.944444444444,44"
+                    Point3="-24.944444444444,48" />
+                  <mssgle:LineSegment
+                    End="-24.944444444444,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="231,42"
+          Id="Package.EventHandlers[OnError]\SQL - Error Log"
+          TopLeft="255.2,133.6" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Sequence Container\DFT - Load BCDataMartRecon">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM"
+          TopLeft="287,47.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt"
+          TopLeft="67.5,45.5" />
+        <NodeLayout
+          Size="286,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon"
+          TopLeft="179,557.5" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\DRV - BatchID &amp; Legacy"
+          TopLeft="212,343.5" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Source Count"
+          TopLeft="212,241.5" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\CNT - Insert  Count"
+          TopLeft="212,445.5" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\BC_RPT"
+          TopLeft="15.5,123.5" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\BC DM"
+          TopLeft="417.5,110.753521126761" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon\Merge Join"
+          TopLeft="247.5,139.5" />
+        <EdgeLayout
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[OLE DB Source Output]"
+          TopLeft="149.5,87.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-75,36"
+              Start="0,0"
+              End="-75,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="-4,18" />
+                  <mssgle:LineSegment
+                    End="-71,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-71,18"
+                    Point2="-75,18"
+                    Point3="-75,22" />
+                  <mssgle:LineSegment
+                    End="-75,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Merge Join Output]"
+          TopLeft="313.5,181.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Derived Column Output]"
+          TopLeft="313.5,385.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Sort Output1]"
+          TopLeft="133.5,144.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114,16"
+              Start="0,0"
+              End="106.5,16">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53,0"
+                    Point2="57,0"
+                    Point3="57,4" />
+                  <mssgle:LineSegment
+                    End="57,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57,12"
+                    Point2="57,16"
+                    Point3="61,16" />
+                  <mssgle:LineSegment
+                    End="106.5,16" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Sort Output]"
+          TopLeft="417.5,131.753521126761">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-38,28.7464788732394"
+              Start="0,0"
+              End="-30.5,28.7464788732394">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-15,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15,0"
+                    Point2="-19,0"
+                    Point3="-19,4" />
+                  <mssgle:LineSegment
+                    End="-19,24.7464788732394" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19,24.7464788732394"
+                    Point2="-19,28.7464788732394"
+                    Point3="-23,28.7464788732394" />
+                  <mssgle:LineSegment
+                    End="-30.5,28.7464788732394" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Row Count Output 11]"
+          TopLeft="313.5,487.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.5,70"
+              Start="0,0"
+              End="8.5,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31"
+                    Point2="0,35"
+                    Point3="4,35" />
+                  <mssgle:LineSegment
+                    End="4.5,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.5,35"
+                    Point2="8.5,35"
+                    Point3="8.5,39" />
+                  <mssgle:LineSegment
+                    End="8.5,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[Row Count Output 1]"
+          TopLeft="313.5,283.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\DFT - Load BCDataMartRecon.Paths[OLE DB Source Output1]"
+          TopLeft="454,68.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,42.253521126761"
+              Start="0,0"
+              End="19.5,34.753521126761">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="15.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,0"
+                    Point2="19.5,0"
+                    Point3="19.5,4" />
+                  <mssgle:LineSegment
+                    End="19.5,34.753521126761" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\Sequence Container\DFT - Load BCDataMartRecon.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,41.6"
+          Id="{f3fe4a18-fd80-4157-a256-4984befdde66}"
+          TopLeft="320,142.4" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BC DM">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_SRC - BCRpt">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\DFT - Load BCDataMartRecon\OLE_DEST - Load -stage-BCDataMartRecon">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

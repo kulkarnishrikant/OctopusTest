@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "BillingDataMart", "BillingDataMart\BillingDataMart.dtproj", "{BCAA2604-A5AD-469C-9A45-477C893B2A47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Development|Default = Development|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCAA2604-A5AD-469C-9A45-477C893B2A47}.Debug|Default.ActiveCfg = Development
+		{BCAA2604-A5AD-469C-9A45-477C893B2A47}.Debug|Default.Build.0 = Development
+		{BCAA2604-A5AD-469C-9A45-477C893B2A47}.DebugLocal|Default.ActiveCfg = Development
+		{BCAA2604-A5AD-469C-9A45-477C893B2A47}.DebugLocal|Default.Build.0 = Development
+		{BCAA2604-A5AD-469C-9A45-477C893B2A47}.Development|Default.ActiveCfg = Development
+		{BCAA2604-A5AD-469C-9A45-477C893B2A47}.Development|Default.Build.0 = Development
+		{BCAA2604-A5AD-469C-9A45-477C893B2A47}.Release|Default.ActiveCfg = Development
+		{BCAA2604-A5AD-469C-9A45-477C893B2A47}.Release|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57FFFACB-647F-49FC-B5C6-F0334C883B4D}
+	EndGlobalSection
+EndGlobal
